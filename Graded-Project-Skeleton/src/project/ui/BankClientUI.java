@@ -101,42 +101,17 @@ public class BankClientUI {
 
 					//TODO Requirement 5
 					if( choice.equals( "5" ) ) {
-
-						String name = input.read( "new name" );
-						String address = input.read( "new address" );
-
-						Date birthDate = null;
-						try { birthDate = new SimpleDateFormat( "dd/MM/yyyy" ).parse(input.read( "new birthDate" )); }
-						catch( ParseException ex ){ ex.printStackTrace(); }
-
-						username = input.read( "new username" );
-						password = input.read( "new password" );
-
-						bankClients.get( pos ).changeClientDetails( name, address, birthDate, username, password );
+						new ChangeDetailsTransaction(bankClients, pos);
 					}
 
 					//TODO Requirement 6
 					else if( choice.equals( "6" ) ) {
-
-						bankClients.get( pos ).printAccounts();
-
-						accountNumber = Integer.parseInt( input.read( "account number" ) );
-
-						bankClients.get( pos ).deleteAccount( accountNumber );
-
-						if( bankClients.get( pos ).accountNumbers.size() == 0 ) bankClients.remove( pos );
+						new DeleteTransaction(bankClients, pos);
 					}
 
 					//TODO Requirement 7
 					else if( choice.equals( "7" ) ) {
-
-						bankClients.get( pos ).printAccounts();
-
-						int fromAccountNumber = Integer.parseInt( input.read( "from account number" ) );
-						int toAccountNumber = Integer.parseInt(input.read( "to account number" ) );
-						double amount = Integer.parseInt(input.read( "amount" ) );
-
-						bankClients.get( pos ).transfer( fromAccountNumber, toAccountNumber, amount );
+						new MoneyTransferTransaction(bankClients, pos);
 					}
 
 					//TODO Requirement 8

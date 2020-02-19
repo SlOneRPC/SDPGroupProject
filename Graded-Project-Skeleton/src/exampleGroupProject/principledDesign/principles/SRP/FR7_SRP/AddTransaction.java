@@ -73,7 +73,7 @@ public class AddTransaction {
 		else if( contractType.equals( "hourly-rate" ) ) employee = new HourlyEmployee( name, address, new UnionMember( Boolean.parseBoolean( unionMember ) ) );
 
 
-		employees.add( employee );
+		employees.add(employee );
 	}
 
 	
