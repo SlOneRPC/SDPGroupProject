@@ -4,6 +4,11 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
+
+import project.actors.BankClient;
+import project.actors.BankEmployee;
+import project.utilities.*;
 
 public class BankEmployeeUI {
 
@@ -36,10 +41,14 @@ public class BankEmployeeUI {
 
 			System.out.println( "1. Book it" );
 			System.out.println( "2. Do not book it" );
-			String choice = read( "choice" );
+			String choice = StdInput.read( "choice" );
 
 			if( choice.equals( "1" ) ) bankClient.bookAppointment( date, bankEmployee.name ); //we assume that we answer with this call to the client.
 		}
 	}
 	
+	public static void print( List<BankClient> bankClients ) {
+
+		for( int i = 0; bankClients != null && i < bankClients.size(); ++i ) bankClients.get( i ).toPrint();
+	}
 }
