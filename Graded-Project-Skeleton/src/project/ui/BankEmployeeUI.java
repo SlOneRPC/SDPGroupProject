@@ -8,6 +8,7 @@ import java.util.List;
 
 import project.actors.BankClient;
 import project.actors.BankEmployee;
+import project.transaction.BookAppointmentTransaction;
 import project.utilities.*;
 
 
@@ -34,19 +35,7 @@ public class BankEmployeeUI {
 
 		print( bankEmployee.bankClientsWithAppointments );
 
-		for( int i = 0; i < bankEmployee.bankClientsWithAppointments.size(); ++i ) {
-
-			Date date = bankEmployee.appointmentDates.get( i );
-			BankClient bankClient = bankEmployee.bankClientsWithAppointments.get( i );
-
-			System.out.println( "\nCandidate date = " + date + " with client = " + bankClient.name );
-
-			System.out.println( "1. Book it" );
-			System.out.println( "2. Do not book it" );
-			String choice = StdInput.read( "choice" );
-
-			if( choice.equals( "1" ) ) bankClient.bookAppointment( date, bankEmployee.name ); //we assume that we answer with this call to the client.
-		}
+		new BookAppointmentTransaction(bankEmployee);
 	}
 	
 	public static void print( List<BankClient> bankClients ) {

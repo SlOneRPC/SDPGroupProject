@@ -114,20 +114,10 @@ public class BankClientUI {
 						new MoneyTransferTransaction(bankClients, pos);
 					}
 
-					//TODO Requirement 8
-					else if( choice.equals( "8" ) ) {
-
-						Date appointmentDate = null;
-						try { appointmentDate = new SimpleDateFormat( "dd/MM/yyyy" ).parse( input.read( "apppoinment date" ) ); }
-						catch( ParseException ex ){ ex.printStackTrace(); }
-
-
-						boolean scheduled = bankClients.get( pos ).askForSchedulingAppointment( bankClients.get( pos ).clientID, appointmentDate, employeeName );
-
-						if( scheduled ) bankClients.get( pos ).bookAppointment( appointmentDate, employeeName );
-
-						else System.err.println( "The appointment has not been booked" );
-					}
+					//Requirement 8 - DONE
+                    else if( choice.equals( "8" ) ) {
+                        BookAppointmentTransaction transaction = new BookAppointmentTransaction(bankClients, pos);
+                    }
 				}
 			}
 		}
