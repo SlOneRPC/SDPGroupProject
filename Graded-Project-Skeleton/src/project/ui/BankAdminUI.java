@@ -5,13 +5,11 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.List;
-//import project.actors.*;
-//import project.transaction.*;
-//import project.ui.*;
-//import project.utilities.*;
 
-import gradedGroupProject.nonPrincipledDesign.v1.BankAdmin;
-import gradedGroupProject.nonPrincipledDesign.v1.BankClient;
+import project.actors.*;
+import project.transaction.*;
+import project.ui.*;
+import project.utilities.*;
 
 
 public class BankAdminUI {
