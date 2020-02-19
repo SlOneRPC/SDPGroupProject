@@ -1,9 +1,5 @@
 package project.utilities;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-
 public class StdInput {
 
 	public static String read( String label ) {
