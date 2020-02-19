@@ -33,15 +33,19 @@ public class BankClient {
 	public List<String> bankEmployeesWithAppointments;
 
 
+	
+	
 	public BankClient( String username, String password ){
-
+//String username, String password
+		
+		
 		this.username = username;
 		this.password = password;
-
-		if( username == null || username == null ) System.err.println( "Error register transaction" );
-
-
-		this.clientID = clientCount.incrementAndGet();
+//
+//		if( username == null || username == null ) System.err.println( "Error register transaction" );
+//
+//
+//		this.clientID = clientCount.incrementAndGet();
 	}
 
 	public void createProfile( String name, String address, Date birthDate ){

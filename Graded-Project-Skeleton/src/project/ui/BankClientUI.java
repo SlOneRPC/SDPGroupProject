@@ -1,5 +1,7 @@
 package project.ui;
 
+
+import project.utilities.*;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,6 +13,8 @@ import java.util.List;
 
 import project.actors.BankClient;
 import project.utilities.StdInput;
+import project.transaction.*;
+ 
 
 public class BankClientUI {
 	
@@ -32,15 +36,14 @@ public class BankClientUI {
 
 			else if( choice.equals( "1" ) ) {
 
-				String username = input.read( "username" );
-				String password = input.read( "password" );
-
-
-				BankClient bankClient = new BankClient( username, password );
-
-				bankClients.add( bankClient );
-
-
+			
+				//Requirement 1
+				RegisterTransaction rt = new RegisterTransaction(bankClients);
+				
+			
+				
+				
+				//Requirement 2
 				String name = input.read( "name" );
 				String address = input.read( "address" );
 
@@ -51,6 +54,9 @@ public class BankClientUI {
 				bankClient.createProfile( name, address, birthDate );
 
 
+				
+				
+	
 				while( true ){
 
 					String accountType = input.read( "account type (primary, savings)" );
