@@ -33,45 +33,37 @@ public class BankClient {
 
 
 	public BankClient( String username, String password ){
-		this.username = username;
-		this.password = password;
+
+		//TODO
 	}
 
 	public void createProfile( String name, String address, Date birthDate ){
-		this.name = name;
-		this.address = address;
-		this.birthDate = birthDate;
+
+		//TODO
 	}
 
 	public int addAccount( String accountType ){
 
 		//TODO
-		this.accountNumbers.add(this.accountNumbers.size() + 1);
-		this.accountTypes.add(accountType);
-		this.accountVerified.add(false);
-		this.accountBalances.add(0.00);
-		
+
 		return 0;
 	}
 
 	public boolean askForVerification( int clientID, int accountNumber, String adminName ){
 
 		//Assume we sent a message to bank admin
-		//verify(accountNumber,true);
-		
+
 		return true;
 	}
 
 	public void verify( int accountNumber, boolean verified ){
-		this.accountVerified.set(accountNumber, verified);
+
+		//TODO
 	}
 
 	public void changeClientDetails( String name, String address, Date birthDate, String username, String password ){
-		this.name = name;
-		this.address = address;
-		this.birthDate = birthDate;
-		this.username = username;
-		this.password = password;
+
+		//TODO
 	}
 
 	public void toPrint() {
@@ -85,26 +77,18 @@ public class BankClient {
 	}
 
 	public void printAccounts() {
-		for (int i = 1; i <= accountNumbers.size(); i++) {
-			toPrintAccount(i);
-		}
+
+		//TODO
 	}
 
 	public void deleteAccount( int accountNumber ) {
-		this.accountNumbers.remove(accountNumber);
-		this.accountBalances.remove(accountNumber);
-		this.accountTypes.remove(accountNumber);
-		this.accountVerified.remove(accountNumber);
-		
-		
-		//TODO update account numbers
+
+		//TODO
 	}
 
 	public void transfer( int fromAccountNumber, int toAccountNumber, double amount ) {
-		double accountBalance1 = this.accountBalances.get(fromAccountNumber);
-		double accountBalance2 = this.accountBalances.get(toAccountNumber);
-		this.accountBalances.set(fromAccountNumber,accountBalance1-amount);
-		this.accountBalances.set(toAccountNumber, accountBalance2+amount);
+
+		//TODO
 	}
 
 	public boolean askForSchedulingAppointment( int clientID, Date date, String employeeName ){
@@ -146,23 +130,24 @@ public class BankClient {
 
 			else if( choice.equals( "1" ) ) {
 
-				BankClient bankClient = new BankClient("test", "test");//todo ask user for username / password
-				bankClients.add(bankClient);
-				
-				
+				//TODO
+
+
 				while( true ){
+
+					//TODO
+
 
 					System.out.println( "\n0. NO extra account" );
 					System.out.println( "1. Extra account" );
 					String choice2 = read( "choice" );
-					
+
 					if( choice2.equals( "0" ) ) break;
 
-			
+
 					//boolean verified = bankClient.askForVerification( bankClient.clientID, accountNumber, adminName ); //TODO: contact bank admin
 
 					//bankClient.verify( accountNumber, verified );
-					
 				}
 			}
 
