@@ -16,6 +16,7 @@ public class BankAdminUI {
 
 	public static void main( String[] args ) {
 
+		//TODO Requirement 9
 		BankAdmin bankAdmin = new BankAdmin();
 
 		bankAdmin.bankClientsToVerify = new ArrayList<BankClient>();

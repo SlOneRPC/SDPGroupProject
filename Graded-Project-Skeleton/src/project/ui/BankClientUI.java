@@ -37,13 +37,10 @@ public class BankClientUI {
 			else if( choice.equals( "1" ) ) {
 
 			
-				//Requirement 1
+				//TODO Requirement 1
 				RegisterTransaction rt = new RegisterTransaction(bankClients);
-				
-			
-				
-				
-				//Requirement 2
+								
+				//TODO Requirement 2
 				String name = input.read( "name" );
 				String address = input.read( "address" );
 
@@ -53,10 +50,7 @@ public class BankClientUI {
 
 				bankClient.createProfile( name, address, birthDate );
 
-
-				
-				
-	
+				//TODO Requirement 3
 				while( true ){
 
 					String accountType = input.read( "account type (primary, savings)" );
@@ -78,9 +72,9 @@ public class BankClientUI {
 
 			else if( choice.equals( "2" ) ) {
 
+				//TODO Requirement 4
 				String username = input.read( "username" );
 				String password = input.read( "password" );
-
 
 				int pos = 0;
 
@@ -105,6 +99,7 @@ public class BankClientUI {
 					choice = input.read( "choice" );
 
 
+					//TODO Requirement 5
 					if( choice.equals( "5" ) ) {
 
 						String name = input.read( "new name" );
@@ -120,6 +115,7 @@ public class BankClientUI {
 						bankClients.get( pos ).changeClientDetails( name, address, birthDate, username, password );
 					}
 
+					//TODO Requirement 6
 					else if( choice.equals( "6" ) ) {
 
 						bankClients.get( pos ).printAccounts();
@@ -131,6 +127,7 @@ public class BankClientUI {
 						if( bankClients.get( pos ).accountNumbers.size() == 0 ) bankClients.remove( pos );
 					}
 
+					//TODO Requirement 7
 					else if( choice.equals( "7" ) ) {
 
 						bankClients.get( pos ).printAccounts();
@@ -142,6 +139,7 @@ public class BankClientUI {
 						bankClients.get( pos ).transfer( fromAccountNumber, toAccountNumber, amount );
 					}
 
+					//TODO Requirement 8
 					else if( choice.equals( "8" ) ) {
 
 						Date appointmentDate = null;

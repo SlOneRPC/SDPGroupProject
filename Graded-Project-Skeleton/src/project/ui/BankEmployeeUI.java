@@ -15,6 +15,7 @@ public class BankEmployeeUI {
 
 	public static void main( String[] args ) throws ParseException {
 
+		//TODO Requirement 10
 		BankEmployee bankEmployee = new BankEmployee();
 		
 		bankEmployee.bankClientsWithAppointments = new ArrayList<BankClient>();
