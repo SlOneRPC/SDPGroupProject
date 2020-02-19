@@ -21,7 +21,7 @@ public class BankEmployee {
 	public static void main( String[] args ) throws ParseException {
 
 		BankEmployee bankEmployee = new BankEmployee();
-
+		
 		bankEmployee.bankClientsWithAppointments = new ArrayList<BankClient>();
 		bankEmployee.appointmentDates = new ArrayList<Date>();
 
