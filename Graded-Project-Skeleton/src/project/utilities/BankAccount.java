@@ -24,7 +24,6 @@ public class BankAccount {
 		return this.accountNumber;
 	}
 	
-	
 	public Double getBalance() {
 		return this.balance;
 	}
