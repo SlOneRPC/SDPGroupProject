@@ -1,5 +1,8 @@
 package project.utilities;
 
-public class SavingsBankAccount {
+public class SavingsBankAccount extends BankAccount {
 
+	public SavingsBankAccount(int accNum, boolean verified, Double balance) {
+		super( accNum, verified,  balance);
+	}
 }

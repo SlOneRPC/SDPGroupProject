@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import project.utilities.*;
+
 
 public class BankClient {
 
@@ -32,7 +34,8 @@ public class BankClient {
 	public List<Date> appointments;
 	public List<String> bankEmployeesWithAppointments;
 
-
+	public List<BankAccount> accounts = new ArrayList<BankAccount>();
+	public List<Appointment> appointments1 = new ArrayList<Appointment>();
 	
 	
 	public BankClient( String username, String password ){
@@ -71,22 +74,26 @@ public class BankClient {
 
 		else {
 
-			if( accountNumbers == null ) accountNumbers = new ArrayList<Integer>();
-			if( accountTypes == null ) accountTypes = new ArrayList<String>();
-			if( accountVerified == null ) accountVerified = new ArrayList<Boolean>();
-			if( accountBalances == null ) accountBalances = new ArrayList<Double>();
-
-			accountNumbers.add( accountCount.incrementAndGet() );
-			accountTypes.add( accountType );
-			accountVerified.add( false );
-			accountBalances.add( 0.0 );
-
+//			if( accountNumbers == null ) accountNumbers = new ArrayList<Integer>();
+//			if( accountTypes == null ) accountTypes = new ArrayList<String>();
+//			if( accountVerified == null ) accountVerified = new ArrayList<Boolean>();
+//			if( accountBalances == null ) accountBalances = new ArrayList<Double>();
+//
+//			accountNumbers.add( accountCount.incrementAndGet() );
+//			accountTypes.add( accountType );
+//			accountVerified.add( false );
+//			accountBalances.add( 0.0 );				
+			if(accountType.equals("primary")) {
+				accounts.add(new PrimaryBankAccount(accountCount.incrementAndGet(), false, 0.0));
+			}else if(accountType.equals("savings")){
+				accounts.add(new SavingsBankAccount(accountCount.incrementAndGet(), false, 0.0));
+			}		
 			return accountCount.get();
 		}
 	}
 
 	public boolean askForVerification( int clientID, int accountNumber, String adminName ){
-
+		//TODO should this be placed inside CreateAccountTransaction
 		//Assume we sent a message to bank admin
 
 		return true;
@@ -94,6 +101,7 @@ public class BankClient {
 
 	public void verify( int accountNumber, boolean verified ){
 
+		//TODO maybe delete this/change into "addAccount"?
 		for( int i = 0; i < accountNumbers.size(); ++i ) if( accountNumbers.get( i ) == accountNumber ) accountVerified.set( i , verified );
 	}
 

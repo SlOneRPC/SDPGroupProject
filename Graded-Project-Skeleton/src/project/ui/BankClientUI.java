@@ -29,57 +29,41 @@ public class BankClientUI {
 
 			System.out.println( "\n0. Exit" );
 			System.out.println( "1. Register" ); //--> Create Profile --> Create Account --> Create Further Accounts
-			System.out.println( "4. Login" );
+			System.out.println( "2. Login" );
 			String choice = input.read( "choice" );
 
 			if( choice.equals( "0" ) ) break;
 
 			else if( choice.equals( "1" ) ) {
-
+				BankClient bankClient;
 			
 				//TODO Requirement 1
 				RegisterTransaction rt = new RegisterTransaction(bankClients);
-								
+				bankClient = bankClients.get(bankClients.size() -1);//perhaps change the transaction return type
+				
+				
 				//TODO Requirement 2
-				String name = input.read( "name" );
-				String address = input.read( "address" );
-
-				Date birthDate = null;
-				try { birthDate = new SimpleDateFormat( "dd/MM/yyyy" ).parse( input.read( "birthDate" ) ); }
-				catch( ParseException ex ){ ex.printStackTrace(); }
-
-				bankClient.createProfile( name, address, birthDate );
+				CreateProfileTransaction cpt = new CreateProfileTransaction(bankClient);
 
 				//TODO Requirement 3
 				while( true ){
-
-					String accountType = input.read( "account type (primary, savings)" );
-
-					int accountNumber = bankClient.addAccount( accountType );
+					CreateAccountTransaction cat = new CreateAccountTransaction(bankClient, adminName);
 					
-					boolean verified = bankClient.askForVerification( bankClient.clientID, accountNumber, adminName ); //TODO: contact bank admin
-
-					bankClient.verify( accountNumber, verified );
-
-
 					System.out.println( "\n0. NO extra account" );
 					System.out.println( "1. Extra account" );
-					String choice2 = input.read( "choice" );
-
+					String choice2 = StdInput.read( "choice" );
 					if( choice2.equals( "0" ) ) break;
 				}
 			}
 
 			else if( choice.equals( "2" ) ) {
 
+				String username;
+				String password;//TODO move these into the BankClient class
 				//TODO Requirement 4
-				String username = input.read( "username" );
-				String password = input.read( "password" );
-
-				int pos = 0;
-
-				for( pos = 0; pos < bankClients.size(); ++pos ) if( bankClients.get( pos ).username.equals( username ) && bankClients.get( pos ).password.equals( password ) ) break;
-
+			
+				LoginTransaction lt = new LoginTransaction(bankClients);
+				int pos = lt.executeLoginTransaction();//Not sure about this, but it still works
 				if( pos < 0 || pos >= bankClients.size() ) System.err.println( "Invalid username or password" );
 
 				else {

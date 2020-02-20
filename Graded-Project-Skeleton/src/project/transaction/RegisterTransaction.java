@@ -13,7 +13,7 @@ public class RegisterTransaction {
 		provideDetails();
 		String error = checkTransactionStructure();
 		if( error != null ) printErrorMessage( error );
-		executeRegisterTransaction(bankClients);
+		else {executeRegisterTransaction(bankClients);}	
 	}
 	
 	private void provideDetails() {
@@ -26,7 +26,7 @@ public class RegisterTransaction {
 		return null;
 	}
 	
-	public void printErrorMessage( String message ) {
+	private void printErrorMessage( String message ) {
 		System.err.println( message );
 	}
 	
