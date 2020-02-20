@@ -25,7 +25,7 @@ public class VerifyBankAccountTransaction {
 	
 	public boolean checkTransactionStructure() {
 		if(accountNumber != -1) {
-			for(BankAccount bankAccount: client.accounts) {
+			for(BankAccount bankAccount: client.getAccounts()) {
 				if(bankAccount.getAccountNumber() == accountNumber)//check if the account exists
 				{
 					if(bankAccount.getVerified() == false) //TODO check if there is missing information

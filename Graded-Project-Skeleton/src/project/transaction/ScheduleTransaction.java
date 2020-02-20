@@ -22,7 +22,7 @@ public class ScheduleTransaction {
 		if(checkTransactionStructure() ) 
 			executeChangeTransaction(client);
 		else
-			notifyClient(false);//print error
+			printErrorMsg();
 	}
 
 
@@ -44,13 +44,14 @@ public class ScheduleTransaction {
 	
 	public void executeChangeTransaction(BankClient client) {
 		client.bookAppointment( appointmentDate, employeeName );
-		notifyClient(true);
+		notifyClient();
 	}
 	
-	public void notifyClient(boolean booked) {
-		if(booked)
+	public void notifyClient() {
 			System.out.println("Appointment successfully booked!");
-		else 
-			System.err.println("The appointment has not been booked" );
+	}
+	
+	public void printErrorMsg() {
+		System.err.println("The appointment has not been booked" );
 	}
 }
