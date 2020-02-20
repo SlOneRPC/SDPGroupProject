@@ -26,16 +26,16 @@ public class BankClient {
 	public String username;
 	public String password;
 
-	public List<Integer> accountNumbers;
-	public List<String> accountTypes;
-	public List<Boolean> accountVerified;
-	public List<Double> accountBalances;
+//	public List<Integer> accountNumbers;
+//	public List<String> accountTypes;
+//	public List<Boolean> accountVerified;
+//	public List<Double> accountBalances;
 
-	public List<Date> appointments;
-	public List<String> bankEmployeesWithAppointments;
+//	public List<Date> appointments;
+//	public List<String> bankEmployeesWithAppointments;
 
-	public List<BankAccount> accounts = new ArrayList<BankAccount>();
-	public List<Appointment> appointments1 = new ArrayList<Appointment>();
+	public ArrayList<BankAccount> accounts = new ArrayList<BankAccount>();
+	public ArrayList<Appointment> appointments = new ArrayList<Appointment>();
 	
 	
 	public BankClient( String username, String password ){
@@ -109,31 +109,32 @@ public class BankClient {
 		if( address != null ) System.out.println( "address = " + address );
 		if( address != null ) System.out.println( "birthDate = " + birthDate );
 
-		for( int i = 0; accountNumbers != null && i < accountNumbers.size(); ++i ) System.out.println( "\taccountNumber: " + accountNumbers.get( i ) );
+		for( int i = 0; accounts != null && i < accounts.size(); ++i ) System.out.println( "\taccountNumber: " + accounts.get(i).getAccountNumber() );
 	}
 
 	public void toPrintAccount( int accountNumber ) {
 
-		for( int i = 0; accountNumbers != null && i < accountNumbers.size(); ++i ) {
+		for( int i = 0; accounts != null && i < accounts.size(); ++i ) {
 
-			if( accountNumbers.get( i ) == accountNumber ) {
+			if( accounts.get( i ).getAccountNumber() == accountNumber ) {
 
-				System.out.println( "\taccountNumber: " + accountNumbers.get( i ) );
-				System.out.println( "\taccountType: " + accountTypes.get( i ) );
-				System.out.println( "\taccountVerified: " + accountVerified.get( i ) );
-				System.out.println( "\taccountBalance: " + accountBalances.get( i ) );
+				BankAccount account = accounts.get(i);
+				System.out.println( "\taccountNumber: " + account.getAccountNumber() );
+				System.out.println( "\taccountType: " + account.toString() );
+				System.out.println( "\taccountVerified: " + account.getVerified());
+				System.out.println( "\taccountBalance: " + account.getBalance());
 			}
 		}
 	}
 
 	public void printAccounts() {
 
-		for( int i = 0; accountNumbers != null && i < accountNumbers.size(); ++i ) {
-
-			System.out.println( "\taccountNumber: " + accountNumbers.get( i ) );
-			System.out.println( "\taccountType: " + accountTypes.get( i ) );
-			System.out.println( "\taccountVerified: " + accountVerified.get( i ) );
-			System.out.println( "\taccountBalance: " + accountBalances.get( i ) );
+		for( int i = 0; accounts != null && i < accounts.size(); ++i ) {
+			BankAccount account = accounts.get(i);
+			System.out.println( "\taccountNumber: " + account.getAccountNumber() );
+			System.out.println( "\taccountType: " + account.toString() );
+			System.out.println( "\taccountVerified: " + account.getVerified() );
+			System.out.println( "\taccountBalance: " + account.getBalance() );
 		}
 	}
 
@@ -141,51 +142,61 @@ public class BankClient {
 
 		int pos = 0;
 
-		for( pos = 0; pos < accountNumbers.size(); ++pos ) if( accountNumbers.get( pos ) == accountNumber ) break;
+		for( pos = 0; pos < accounts.size(); ++pos ) if( accounts.get( pos ).getAccountNumber() == accountNumber )break;
 
-		if( pos >= 0 && pos < accountNumbers.size() ) {
-
-			accountNumbers.remove( pos );
-			accountTypes.remove( pos );
-			accountVerified.remove( pos );
-			accountBalances.remove( pos );
+		if( pos >= 0 && pos < accounts.size() ) {
+			accounts.remove(pos);
 		}
 	}
 
 	public void transfer( int fromAccountNumber, int toAccountNumber, double amount ) {
 
 		int from = 0;
+		BankAccount fromAccount = new BankAccount(), toAccount = new BankAccount();
+		
+		for( from = 0; from < accounts.size(); ++from ) {
 
-		for( from = 0; from < accountNumbers.size(); ++from ) {
-
-			if( accountNumbers.get( from ) == fromAccountNumber  ) {
-
-				System.out.println( "\tFrom accountNumber: " + accountNumbers.get( from ) );
-				System.out.println( "\ttFrom accountType: " + accountTypes.get( from ) );
-				System.out.println( "\ttFrom accountVerified: " + accountVerified.get( from ) );
-				System.out.println( "\ttFrom accountBalance: " + accountBalances.get( from ) );
+			if( accounts.get( from ).getAccountNumber() == fromAccountNumber  ) {
+				fromAccount = accounts.get(from);
+//				System.out.println( "\tFrom accountNumber: " + accountNumbers.get( from ) );
+//				System.out.println( "\ttFrom accountType: " + accountTypes.get( from ) );
+//				System.out.println( "\ttFrom accountVerified: " + accountVerified.get( from ) );
+//				System.out.println( "\ttFrom accountBalance: " + accountBalances.get( from ) );
+				
+				System.out.println( "\tFrom accountNumber: " + fromAccount.getAccountNumber());
+				System.out.println( "\ttFrom accountType: " + fromAccount.toString());//TODO test this out
+				System.out.println( "\ttFrom accountVerified: " + fromAccount.getVerified() );
+				System.out.println( "\ttFrom accountBalance: " + fromAccount.getBalance() );		
 			}
 		}
 
 		int to = 0;
 
-		for( to = 0; to < accountNumbers.size(); ++to ) {
+		for( to = 0; to < accounts.size(); ++to ) {
 
-			if( accountNumbers.get( to ) == toAccountNumber  ) {
-
-				System.out.println( "\tTo accountNumber: " + accountNumbers.get( to ) );
-				System.out.println( "\tTo accountType: " + accountTypes.get( to ) );
-				System.out.println( "\tTo accountVerified: " + accountVerified.get( to ) );
-				System.out.println( "\tTo accountBalance: " + accountBalances.get( to ) );
+			if( accounts.get( to ).getAccountNumber() == toAccountNumber  ) {
+				toAccount = accounts.get(to);
+//				System.out.println( "\tTo accountNumber: " + accountNumbers.get( to ) );
+//				System.out.println( "\tTo accountType: " + accountTypes.get( to ) );
+//				System.out.println( "\tTo accountVerified: " + accountVerified.get( to ) );
+//				System.out.println( "\tTo accountBalance: " + accountBalances.get( to ) );
+				
+				System.out.println( "\tFrom accountNumber: " + toAccount.getAccountNumber());
+				System.out.println( "\ttFrom accountType: " + toAccount.toString());//TODO test this out
+				System.out.println( "\ttFrom accountVerified: " + toAccount.getVerified() );
+				System.out.println( "\ttFrom accountBalance: " + toAccount.getBalance() );
 			}
 		}
 
-		if( from >= 0 && from < accountNumbers.size() && to >= 0 && to < accountNumbers.size() && accountBalances.get( from ) >= amount ) {
+		//if( from >= 0 && from < accountNumbers.size() && to >= 0 && to < accountNumbers.size() && accountBalances.get( from ) >= amount ) {
+		if( from >= 0 && from < accounts.size() && to >= 0 && to < accounts.size() && fromAccount.getBalance() >= amount ) {
+			
+			//accountBalances.set( from, accountBalances.get( from ) - amount );
+			fromAccount.setBalance(fromAccount.getBalance() - amount);
 
-			accountBalances.set( from, accountBalances.get( from ) - amount );
-
-			accountBalances.set( to, accountBalances.get( to ) + amount );
-
+			//accountBalances.set( to, accountBalances.get( to ) + amount );
+			toAccount.setBalance(toAccount.getBalance() - amount);
+			
 			System.out.println( "Transfer is completed" );
 		}
 
@@ -214,15 +225,15 @@ public class BankClient {
 		if( date == null || employeeName == null ) System.err.println( "Error book appointment transaction" );
 
 		else {
-
-			if( appointments == null ) appointments = new ArrayList<Date>();
-
-			appointments.add( date );
-
-
-			if( bankEmployeesWithAppointments == null ) bankEmployeesWithAppointments = new ArrayList<String>();
-
-			bankEmployeesWithAppointments.add( employeeName );
+			appointments.add(new Appointment(employeeName, date));
+//			if( appointments == null ) appointments = new ArrayList<Date>();
+//
+//			appointments.add( date );
+//
+//			
+//			if( bankEmployeesWithAppointments == null ) bankEmployeesWithAppointments = new ArrayList<String>();
+//
+//			bankEmployeesWithAppointments.add( employeeName );
 		}
 	}
 }

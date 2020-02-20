@@ -31,9 +31,10 @@ public class DeleteTransaction {
 	}
 	
 	private String checkTransactionStructure() {
+		//TODO look into this, look for a workaround
 		if(bankClients != null) {
-			for( int index = 0; index < bankClients.get(pos).accountNumbers.size(); index++ ) {
-				if( bankClients.get(pos).accountNumbers.get(index) ==  accountNum) {
+			for( int index = 0; index < bankClients.get(pos).accounts.size(); index++ ) {
+				if( bankClients.get(pos).accounts.get(index).getAccountNumber() ==  accountNum) {
 					return null;
 				}
 			}

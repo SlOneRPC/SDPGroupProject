@@ -37,17 +37,18 @@ public class MoneyTransferTransaction {
 	
 	private String checkTransactionStructure() {	
 		//inefficient code
+		//TODO look into the references , look for a workaround
 		int accountsChecked = 0;
 		if (fromAccountNum != toAccountNum && amount > 0) {
-			for(int accountNumIndex = 0; accountNumIndex < bankClients.get(pos).accountNumbers.size(); accountNumIndex++) {
-				if((fromAccountNum == bankClients.get(pos).accountNumbers.get(accountNumIndex)) && accountsChecked == 1){
+			for(int accountNumIndex = 0; accountNumIndex < bankClients.get(pos).accounts.size(); accountNumIndex++) {
+				if((fromAccountNum == bankClients.get(pos).accounts.get(accountNumIndex).getAccountNumber()) && accountsChecked == 1){
 					accountsChecked++;
-					if (bankClients.get(pos).accountBalances.get(accountNumIndex) < 0) {
+					if (bankClients.get(pos).accounts.get(accountNumIndex).getBalance() < 0) {
 						break;
 					}
 					return null;
 				}
-				else if(toAccountNum == bankClients.get(pos).accountNumbers.get(accountNumIndex) && accountsChecked == 1) {
+				else if(toAccountNum == bankClients.get(pos).accounts.get(accountNumIndex).getAccountNumber() && accountsChecked == 1) {
 					accountsChecked++;
 					return null;
 				}

@@ -14,12 +14,27 @@ public class BankAccount {
 		this.balance = balance;
 	}
 	
+	public BankAccount() {}
+	
 	public void setVerified(boolean verified) {
 		this.verified = verified;
 	}
 	
 	public int getAccountNumber() {
 		return this.accountNumber;
+	}
+	
+	
+	public Double getBalance() {
+		return this.balance;
+	}
+	
+	public boolean getVerified() {
+		return this.verified;
+	}
+	
+	public void setBalance(Double balance) {
+		this.balance = balance;
 	}
 	
 }
