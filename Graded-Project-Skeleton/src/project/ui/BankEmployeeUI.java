@@ -8,7 +8,7 @@ import java.util.List;
 
 import project.actors.BankClient;
 import project.actors.BankEmployee;
-import project.transaction.BookAppointmentTransaction;
+import project.transaction.ScheduleTransaction;
 import project.utilities.*;
 
 
@@ -47,7 +47,7 @@ public class BankEmployeeUI {
 				System.out.println( "2. Do not book it" );
 				String choice = StdInput.read( "choice" );
 				
-				if( choice.equals( "1" ) ) new BookAppointmentTransaction(bankClient, appointmentDate,  bankEmployee.name);
+				if( choice.equals( "1" ) ) new ScheduleTransaction(bankEmployee, bankClient, appointmentDate,  bankEmployee.name);
 			
 		}
 	}
