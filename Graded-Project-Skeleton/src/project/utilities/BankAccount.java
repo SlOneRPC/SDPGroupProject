@@ -18,4 +18,8 @@ public class BankAccount {
 		this.verified = verified;
 	}
 	
+	public int getAccountNumber() {
+		return this.accountNumber;
+	}
+	
 }
