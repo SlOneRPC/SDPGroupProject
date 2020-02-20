@@ -10,4 +10,6 @@ public class BankEmployee {
 
 	public List<BankClient> bankClientsWithAppointments;
 	public List<Date> appointmentDates;
+	
+	public BankEmployee() { }
 }
