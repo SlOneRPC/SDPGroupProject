@@ -14,17 +14,6 @@ public class BookAppointmentTransaction {
 	Date appointmentDate = null;
 	String adminName = "X", employeeName = "Y";
 	
-	public BookAppointmentTransaction(BankClient client,Date AppointmentDate,String employeeName) {
-		
-		this.appointmentDate = AppointmentDate;
-		this.employeeName = employeeName;
-		
-		if(checkTransactionStructure()) 
-			executeChangeTransaction(client);
-		else
-			notifyEmployee(false);//print error
-	};
-	
 	public BookAppointmentTransaction(BankClient client) 
 	{
 		try { appointmentDate = new SimpleDateFormat( "dd/MM/yyyy" ).parse( StdInput.read( "apppoinment date" ) ); }
@@ -36,10 +25,10 @@ public class BookAppointmentTransaction {
 	
 			if( scheduled )  executeChangeTransaction(client);
 	
-			else notifyEmployee(scheduled);
+			else printErrorMsg();
 		}
 		else
-			 notifyEmployee(false);
+			printErrorMsg();
 	}
 	
 	public boolean checkTransactionStructure() {
@@ -50,14 +39,14 @@ public class BookAppointmentTransaction {
 	
 	public void executeChangeTransaction(BankClient client) {
 		client.bookAppointment( appointmentDate, employeeName );
-		notifyEmployee(true);
+		notifyEmployee();
 	}
 	
-	public void notifyEmployee(boolean booked) {
-		if(booked)
-			System.out.println("Appointment successfully booked!");
-		else 
-			System.err.println( "The appointment has not been booked" );
-			
+	public void notifyEmployee() {
+		System.out.println("Appointment successfully booked!");	
+	}
+	
+	public void printErrorMsg() {
+		System.err.println( "The appointment has not been booked" );
 	}
 }
