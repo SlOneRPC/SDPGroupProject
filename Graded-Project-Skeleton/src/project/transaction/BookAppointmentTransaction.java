@@ -14,24 +14,15 @@ public class BookAppointmentTransaction {
 	Date appointmentDate = null;
 	String adminName = "X", employeeName = "Y";
 	
-	public BookAppointmentTransaction(BankEmployee bankEmployee) {
-		for( int i = 0; i < bankEmployee.bankClientsWithAppointments.size(); ++i ) {
-
-			appointmentDate = bankEmployee.appointmentDates.get( i );
-			employeeName = bankEmployee.name;
-			if(checkTransactionStructure()) {
-				BankClient bankClient = bankEmployee.bankClientsWithAppointments.get( i );
-	
-				System.out.println( "\nCandidate date = " + appointmentDate + " with client = " + bankClient.name );
-	
-				System.out.println( "1. Book it" );
-				System.out.println( "2. Do not book it" );
-				String choice = StdInput.read( "choice" );
-				
-				employeeName = bankEmployee.name ;
-				if( choice.equals( "1" ) ) executeChangeTransaction(bankClient); //we assume that we answer with this call to the client.
-			}
-		}
+	public BookAppointmentTransaction(BankClient client,Date AppointmentDate,String employeeName) {
+		
+		this.appointmentDate = AppointmentDate;
+		this.employeeName = employeeName;
+		
+		if(checkTransactionStructure()) 
+			executeChangeTransaction(client);
+		else
+			notifyEmployee(false);//print error
 	};
 	
 	public BookAppointmentTransaction(BankClient client) 

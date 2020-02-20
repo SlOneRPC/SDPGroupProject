@@ -8,23 +8,16 @@ public class VerifyBankAccountTransaction {
 	
 	int accountNumber = -1;
 	
-	public VerifyBankAccountTransaction(BankAdmin bankAdmin) {
-		for( int i = 0; i < bankAdmin.accountNumbersToVerify.size(); ++i ) {
+	public VerifyBankAccountTransaction(BankAdmin bankAdmin,int clientIndex) {
+		
+			accountNumber = bankAdmin.accountNumbersToVerify.get( clientIndex );
 
-			accountNumber = bankAdmin.accountNumbersToVerify.get( i );
-			
-			System.out.println( "\nAccount number = " + accountNumber );
-
-			System.out.println( "1. Verify the opening" );
-			System.out.println( "2. Do not verify the opening" );
-			String choice = StdInput.read( "choice" );
-			
 			if(checkTransactionStructure()) {
-				if( choice.equals( "1" ) ) executeVerifyBankAccountTransaction(bankAdmin.bankClientsToVerify.get( i ));
+				executeVerifyBankAccountTransaction(bankAdmin.bankClientsToVerify.get( clientIndex ));
 			}
 			else
 				printErrorMsg();
-		}
+		
 	}
 	
 	public boolean checkTransactionStructure() {

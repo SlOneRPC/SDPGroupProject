@@ -35,7 +35,21 @@ public class BankEmployeeUI {
 
 		print( bankEmployee.bankClientsWithAppointments );
 
-		new BookAppointmentTransaction(bankEmployee);
+		for( int i = 0; i < bankEmployee.bankClientsWithAppointments.size(); ++i ) {
+
+				Date appointmentDate = bankEmployee.appointmentDates.get( i );
+			
+				BankClient bankClient = bankEmployee.bankClientsWithAppointments.get( i );
+	
+				System.out.println( "\nCandidate date = " + appointmentDate + " with client = " + bankClient.name );
+	
+				System.out.println( "1. Book it" );
+				System.out.println( "2. Do not book it" );
+				String choice = StdInput.read( "choice" );
+				
+				if( choice.equals( "1" ) ) new BookAppointmentTransaction(bankClient, appointmentDate,  bankEmployee.name);
+			
+		}
 	}
 	
 	public static void print( List<BankClient> bankClients ) {
