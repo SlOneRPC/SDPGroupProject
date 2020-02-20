@@ -19,7 +19,7 @@ public class LoginTransaction {
 		if(error != null) printErrorMessage(error);
 		else {
 			for( pos = 0; pos < bankClients.size(); pos++ ){
-				if( bankClients.get( pos ).username.equals( username ) && bankClients.get( pos ).password.equals( password ) )
+				if( bankClients.get( pos ).getUsername().equals( username ) && bankClients.get( pos ).getPassword().equals( password ) )
 					break;
 			}
 		}	

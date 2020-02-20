@@ -6,14 +6,14 @@ import project.actors.BankClient;
 import project.utilities.StdInput;
 
 public class DeleteTransaction {
-	private List<BankClient> bankClients;
-	private int pos;
+	BankClient bankClient;
+	List<BankClient> bankClients;
 	
 	private int accountNum;
 
-	public DeleteTransaction(List<BankClient> bankClients, int pos) {
+	public DeleteTransaction(BankClient bankClient, List<BankClient> bankClients) {
+		this.bankClient = bankClient;
 		this.bankClients = bankClients;
-		this.pos = pos;
 		
 		provideAccountNumber();
 		if(checkTransactionStructure() != null) {
@@ -25,7 +25,7 @@ public class DeleteTransaction {
 	}
 	
 	private void provideAccountNumber() {
-		bankClients.get(pos).printAccounts();
+		bankClient.printAccounts();
 		accountNum = Integer.parseInt(StdInput.read("account number"));
 		
 	}
@@ -33,8 +33,8 @@ public class DeleteTransaction {
 	private String checkTransactionStructure() {
 		//TODO look into this, look for a workaround
 		if(bankClients != null) {
-			for( int index = 0; index < bankClients.get(pos).accounts.size(); index++ ) {
-				if( bankClients.get(pos).accounts.get(index).getAccountNumber() ==  accountNum) {
+			for( int index = 0; index < bankClients.get(pos).getAccounts().size(); index++ ) {
+				if( bankClients.get(pos).getAccounts().get(index).getAccountNumber() ==  accountNum) {
 					return null;
 				}
 			}

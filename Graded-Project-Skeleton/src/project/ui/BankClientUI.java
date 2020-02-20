@@ -41,14 +41,12 @@ public class BankClientUI {
 				RegisterTransaction rt = new RegisterTransaction(bankClients);
 				bankClient = bankClients.get(bankClients.size() -1);//perhaps change the transaction return type
 				
-				
 				//TODO Requirement 2
 				CreateProfileTransaction cpt = new CreateProfileTransaction(bankClient);
 
 				//TODO Requirement 3
 				while( true ){
 					CreateAccountTransaction cat = new CreateAccountTransaction(bankClient, adminName);
-					
 					System.out.println( "\n0. NO extra account" );
 					System.out.println( "1. Extra account" );
 					String choice2 = StdInput.read( "choice" );
@@ -90,7 +88,7 @@ public class BankClientUI {
 
 					//TODO Requirement 6
 					else if( choice.equals( "6" ) ) {
-						new DeleteTransaction(bankClients, pos);
+						new DeleteTransaction(bankClients.get(pos), bankClients);
 					}
 
 					//TODO Requirement 7

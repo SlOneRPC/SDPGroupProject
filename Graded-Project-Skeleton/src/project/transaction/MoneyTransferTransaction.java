@@ -34,8 +34,8 @@ public class MoneyTransferTransaction {
 	private String checkTransactionStructure() {	
 		//inefficient code
 		//TODO look into the references , look for a workaround	
-		if(fromAccountNum != toAccountNum && amount > 0 && bankClient.accounts.stream().anyMatch(o -> o.getAccountNumber() == fromAccountNum) 
-				&& bankClient.accounts.stream().anyMatch(o -> o.getAccountNumber() == fromAccountNum) && bankClient.accounts.get(fromAccountNum).getBalance() > 0) {
+		if(fromAccountNum != toAccountNum && amount > 0 && bankClient.getAccounts().stream().anyMatch(o -> o.getAccountNumber() == fromAccountNum) 
+				&& bankClient.getAccounts().stream().anyMatch(o -> o.getAccountNumber() == fromAccountNum) && bankClient.getAccounts().get(fromAccountNum).getBalance() > 0) {
 			return null;
 		}
 		return "Error Money Transfer Transaction";

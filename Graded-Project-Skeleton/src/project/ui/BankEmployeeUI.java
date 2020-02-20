@@ -23,12 +23,12 @@ public class BankEmployeeUI {
 		bankEmployee.appointmentDates = new ArrayList<Date>();
 
 		BankClient bankClient1 = new BankClient( "u1", "p1" );
-		bankClient1.name = "A";
+		bankClient1.setName("A");
 		bankEmployee.bankClientsWithAppointments.add( bankClient1 );
 		bankEmployee.appointmentDates.add( new SimpleDateFormat( "dd/MM/yyyy" ).parse( "20/12/2000" ) );
 
 		BankClient bankClient2 = new BankClient( "u2", "p2" );
-		bankClient2.name = "B";
+		bankClient2.setName("B"); 
 		bankEmployee.bankClientsWithAppointments.add( bankClient2 );
 		bankEmployee.appointmentDates.add( new SimpleDateFormat( "dd/MM/yyyy" ).parse( "22/12/2000" ) );
 
@@ -41,7 +41,7 @@ public class BankEmployeeUI {
 			
 				BankClient bankClient = bankEmployee.bankClientsWithAppointments.get( i );
 	
-				System.out.println( "\nCandidate date = " + appointmentDate + " with client = " + bankClient.name );
+				System.out.println( "\nCandidate date = " + appointmentDate + " with client = " + bankClient.getName() );
 	
 				System.out.println( "1. Book it" );
 				System.out.println( "2. Do not book it" );
