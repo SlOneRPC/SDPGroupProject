@@ -41,7 +41,6 @@ public class BankClientUI {
 				RegisterTransaction rt = new RegisterTransaction(bankClients);
 				bankClient = bankClients.get(bankClients.size() -1);//perhaps change the transaction return type
 				
-				
 				//TODO Requirement 2
 				CreateProfileTransaction cpt = new CreateProfileTransaction(bankClient);
 

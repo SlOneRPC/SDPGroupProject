@@ -40,15 +40,15 @@ public class MoneyTransferTransaction {
 		//TODO look into the references , look for a workaround
 		int accountsChecked = 0;
 		if (fromAccountNum != toAccountNum && amount > 0) {
-			for(int accountNumIndex = 0; accountNumIndex < bankClients.get(pos).accounts.size(); accountNumIndex++) {
-				if((fromAccountNum == bankClients.get(pos).accounts.get(accountNumIndex).getAccountNumber()) && accountsChecked == 1){
+			for(int accountNumIndex = 0; accountNumIndex < bankClients.get(pos).getAccounts().size(); accountNumIndex++) {
+				if((fromAccountNum == bankClients.get(pos).getAccounts().get(accountNumIndex).getAccountNumber()) && accountsChecked == 1){
 					accountsChecked++;
-					if (bankClients.get(pos).accounts.get(accountNumIndex).getBalance() < 0) {
+					if (bankClients.get(pos).getAccounts().get(accountNumIndex).getBalance() < 0) {
 						break;
 					}
 					return null;
 				}
-				else if(toAccountNum == bankClients.get(pos).accounts.get(accountNumIndex).getAccountNumber() && accountsChecked == 1) {
+				else if(toAccountNum == bankClients.get(pos).getAccounts().get(accountNumIndex).getAccountNumber() && accountsChecked == 1) {
 					accountsChecked++;
 					return null;
 				}
