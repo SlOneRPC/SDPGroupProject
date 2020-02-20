@@ -48,7 +48,6 @@ public class BankClientUI {
 				//TODO Requirement 3
 				while( true ){
 					CreateAccountTransaction cat = new CreateAccountTransaction(bankClient, adminName);
-					
 					System.out.println( "\n0. NO extra account" );
 					System.out.println( "1. Extra account" );
 					String choice2 = StdInput.read( "choice" );
