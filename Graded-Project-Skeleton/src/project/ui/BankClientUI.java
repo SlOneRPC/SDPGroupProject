@@ -94,7 +94,7 @@ public class BankClientUI {
 
 					//TODO Requirement 7
 					else if( choice.equals( "7" ) ) {
-						new MoneyTransferTransaction(bankClients, pos);
+						new MoneyTransferTransaction(bankClients.get(pos));
 					}
 
 					//Requirement 8 - DONE

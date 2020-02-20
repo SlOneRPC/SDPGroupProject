@@ -1,23 +1,19 @@
 package project.transaction;
 
-import java.util.List;
-
 import project.actors.BankClient;
 import project.utilities.StdInput;
 
 public class MoneyTransferTransaction {
 	
-	private List<BankClient> bankClients;
-	private int pos;
+	BankClient bankClient;
 	
 	private int fromAccountNum;
 	private int toAccountNum;
 	private double amount;
 	
 
-	public MoneyTransferTransaction(List<BankClient> bankClients, int pos) {
-		this.bankClients = bankClients;
-		this.pos = pos;
+	public MoneyTransferTransaction(BankClient bankClient) {
+		this.bankClient = bankClient;
 		
 		provideTransferDetails();
 		if(checkTransactionStructure() != null) {
@@ -29,7 +25,7 @@ public class MoneyTransferTransaction {
 	}
 	
 	private void provideTransferDetails() {
-		bankClients.get(pos).printAccounts();
+		bankClient.printAccounts();
 		fromAccountNum = Integer.parseInt(StdInput.read( "from account number" ) );
 		toAccountNum = Integer.parseInt(StdInput.read( "to account number" ) );
 		amount = Integer.parseInt(StdInput.read("amount" ));
@@ -37,22 +33,10 @@ public class MoneyTransferTransaction {
 	
 	private String checkTransactionStructure() {	
 		//inefficient code
-		//TODO look into the references , look for a workaround
-		int accountsChecked = 0;
-		if (fromAccountNum != toAccountNum && amount > 0) {
-			for(int accountNumIndex = 0; accountNumIndex < bankClients.get(pos).getAccounts().size(); accountNumIndex++) {
-				if((fromAccountNum == bankClients.get(pos).getAccounts().get(accountNumIndex).getAccountNumber()) && accountsChecked == 1){
-					accountsChecked++;
-					if (bankClients.get(pos).getAccounts().get(accountNumIndex).getBalance() < 0) {
-						break;
-					}
-					return null;
-				}
-				else if(toAccountNum == bankClients.get(pos).getAccounts().get(accountNumIndex).getAccountNumber() && accountsChecked == 1) {
-					accountsChecked++;
-					return null;
-				}
-			}
+		//TODO look into the references , look for a workaround	
+		if(fromAccountNum != toAccountNum && amount > 0 && bankClient.getAccounts().stream().anyMatch(o -> o.getAccountNumber() == fromAccountNum) 
+				&& bankClient.getAccounts().stream().anyMatch(o -> o.getAccountNumber() == fromAccountNum) && bankClient.getAccounts().get(fromAccountNum).getBalance() > 0) {
+			return null;
 		}
 		return "Error Money Transfer Transaction";
 	}
@@ -62,7 +46,7 @@ public class MoneyTransferTransaction {
 	}
 	
 	private void executeMoneyTransferTransaction() {
-		bankClients.get(pos).transfer(fromAccountNum, toAccountNum, amount);
+		bankClient.transfer(fromAccountNum, toAccountNum, amount);
 	}
 	
 }
