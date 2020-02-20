@@ -35,18 +35,7 @@ public class BankAdminUI {
 
 		print( bankAdmin.bankClientsToVerify );
 
-		for( int i = 0; i < bankAdmin.accountNumbersToVerify.size(); ++i ) {
-
-			int accountNumber = bankAdmin.accountNumbersToVerify.get( i );
-
-			System.out.println( "\nAccount number = " + accountNumber );
-
-			System.out.println( "1. Verify the opening" );
-			System.out.println( "2. Do not verify the opening" );
-			String choice = read( "choice" );
-
-			if( choice.equals( "1" ) ) bankAdmin.bankClientsToVerify.get( i ).verify( accountNumber, true );//we assume that we are answering to the client with this call
-		}
+		new VerifyBankAccountTransaction(bankAdmin);
 	}
 	
 	public static String read( String label ) {
