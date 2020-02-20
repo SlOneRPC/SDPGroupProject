@@ -35,7 +35,7 @@ public class CreateAccountTransaction {
 	private void executeCreateAccountTransaction(String adminName) {
 		//hold on, the bankClient holds onto the account even if it's not verified?
 		 //note: this is always true
-		boolean verified = bankClient.askForVerification( bankClient.clientID, accountNumber, adminName ); 
+		boolean verified = bankClient.askForVerification( bankClient.getClientID(), accountNumber, adminName ); 
 		bankClient.verify(accountNumber, verified);
 	}	
 }

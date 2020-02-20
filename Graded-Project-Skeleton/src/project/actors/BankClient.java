@@ -13,29 +13,22 @@ import java.util.concurrent.atomic.AtomicInteger;
 import project.utilities.*;
 
 
-public class BankClient {
+public class BankClient extends Person{
 
 	public static final AtomicInteger clientCount = new AtomicInteger( 0 );
 	public static final AtomicInteger accountCount = new AtomicInteger( 0 );
 
-	public int clientID;
-	public String name;
-	public String address;
-	public Date birthDate;
+	//TODO create getters and setters for each of these
+	private int clientID;
+	private String name; 
+	private String address;
+	private Date birthDate;
 
-	public String username;
-	public String password;
+	private String username;
+	private String password;
 
-//	public List<Integer> accountNumbers;
-//	public List<String> accountTypes;
-//	public List<Boolean> accountVerified;
-//	public List<Double> accountBalances;
-
-//	public List<Date> appointments;
-//	public List<String> bankEmployeesWithAppointments;
-
-	public ArrayList<BankAccount> accounts = new ArrayList<BankAccount>();
-	public ArrayList<Appointment> appointments = new ArrayList<Appointment>();
+	private ArrayList<BankAccount> accounts = new ArrayList<BankAccount>();
+	private ArrayList<Appointment> appointments = new ArrayList<Appointment>();
 	
 	
 	public BankClient( String username, String password ){
@@ -51,7 +44,6 @@ public class BankClient {
 		if( name == null || address == null || birthDate == null ) System.err.println( "Error create profile transaction" );
 
 		else {
-
 			this.name = name;
 			this.address = address;
 			this.birthDate = birthDate;
@@ -61,14 +53,11 @@ public class BankClient {
 	public int addAccount( String accountType ){
 
 		if( accountType == null || (accountType != null && ! accountType.equals( "primary" ) && ! accountType.equals( "savings" ) ) ) {
-
 			System.err.println( "Error create account transaction" );
-
 			return -1;
 		}
 
 		else {
-			
 			if(accountType.equals("primary")) {
 				accounts.add(new PrimaryBankAccount(accountCount.incrementAndGet(), false, 0.0));
 			}else if(accountType.equals("savings")){
@@ -93,7 +82,6 @@ public class BankClient {
 		if( name == null || address == null || birthDate == null || username == null || password == null ) System.err.println( "Error change details transaction" );
 
 		else {
-
 			this.name = name;
 			this.address = address;
 			this.birthDate = birthDate;
@@ -117,7 +105,6 @@ public class BankClient {
 		for( int i = 0; accounts != null && i < accounts.size(); ++i ) {
 
 			if( accounts.get( i ).getAccountNumber() == accountNumber ) {
-
 				BankAccount account = accounts.get(i);
 				System.out.println( "\taccountNumber: " + account.getAccountNumber() );
 				System.out.println( "\taccountType: " + account.toString() );
@@ -158,11 +145,6 @@ public class BankClient {
 
 			if( accounts.get( from ).getAccountNumber() == fromAccountNumber  ) {
 				fromAccount = accounts.get(from);
-//				System.out.println( "\tFrom accountNumber: " + accountNumbers.get( from ) );
-//				System.out.println( "\ttFrom accountType: " + accountTypes.get( from ) );
-//				System.out.println( "\ttFrom accountVerified: " + accountVerified.get( from ) );
-//				System.out.println( "\ttFrom accountBalance: " + accountBalances.get( from ) );
-				
 				System.out.println( "\tFrom accountNumber: " + fromAccount.getAccountNumber());
 				System.out.println( "\ttFrom accountType: " + fromAccount.toString());//TODO test this out
 				System.out.println( "\ttFrom accountVerified: " + fromAccount.getVerified() );
@@ -176,10 +158,6 @@ public class BankClient {
 
 			if( accounts.get( to ).getAccountNumber() == toAccountNumber  ) {
 				toAccount = accounts.get(to);
-//				System.out.println( "\tTo accountNumber: " + accountNumbers.get( to ) );
-//				System.out.println( "\tTo accountType: " + accountTypes.get( to ) );
-//				System.out.println( "\tTo accountVerified: " + accountVerified.get( to ) );
-//				System.out.println( "\tTo accountBalance: " + accountBalances.get( to ) );
 				
 				System.out.println( "\tFrom accountNumber: " + toAccount.getAccountNumber());
 				System.out.println( "\ttFrom accountType: " + toAccount.toString());//TODO test this out
@@ -191,10 +169,8 @@ public class BankClient {
 		//if( from >= 0 && from < accountNumbers.size() && to >= 0 && to < accountNumbers.size() && accountBalances.get( from ) >= amount ) {
 		if( from >= 0 && from < accounts.size() && to >= 0 && to < accounts.size() && fromAccount.getBalance() >= amount ) {
 			
-			//accountBalances.set( from, accountBalances.get( from ) - amount );
 			fromAccount.setBalance(fromAccount.getBalance() - amount);
 
-			//accountBalances.set( to, accountBalances.get( to ) + amount );
 			toAccount.setBalance(toAccount.getBalance() - amount);
 			
 			System.out.println( "Transfer is completed" );
@@ -226,14 +202,68 @@ public class BankClient {
 
 		else {
 			appointments.add(new Appointment(employeeName, date));
-//			if( appointments == null ) appointments = new ArrayList<Date>();
-//
-//			appointments.add( date );
-//
-//			
-//			if( bankEmployeesWithAppointments == null ) bankEmployeesWithAppointments = new ArrayList<String>();
-//
-//			bankEmployeesWithAppointments.add( employeeName );
 		}
 	}
+
+	//getters and setters
+	public int getClientID() {
+		return clientID;
+	}
+
+	public void setClientID(int clientID) {
+		this.clientID = clientID;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+	public Date getBirthDate() {
+		return birthDate;
+	}
+
+	public void setBirthDate(Date birthDate) {
+		this.birthDate = birthDate;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public ArrayList<BankAccount> getAccounts() {
+		return accounts;
+	}
+
+	public void setAccounts(ArrayList<BankAccount> accounts) {
+		this.accounts = accounts;
+	}
+	
+	public ArrayList<Appointment> getAppointments() {
+		return appointments;
+	}
+	
 }

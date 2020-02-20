@@ -41,7 +41,6 @@ public class BankClientUI {
 				RegisterTransaction rt = new RegisterTransaction(bankClients);
 				bankClient = bankClients.get(bankClients.size() -1);//perhaps change the transaction return type
 				
-				
 				//TODO Requirement 2
 				CreateProfileTransaction cpt = new CreateProfileTransaction(bankClient);
 
@@ -89,7 +88,7 @@ public class BankClientUI {
 
 					//TODO Requirement 6
 					else if( choice.equals( "6" ) ) {
-						new DeleteTransaction(bankClients, pos);
+						new DeleteTransaction(bankClients.get(pos), bankClients);
 					}
 
 					//TODO Requirement 7

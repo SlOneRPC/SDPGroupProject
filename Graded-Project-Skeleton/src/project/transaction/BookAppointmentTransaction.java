@@ -32,7 +32,7 @@ public class BookAppointmentTransaction {
 		
 		if(checkTransactionStructure()) {
 			
-			boolean scheduled = client.askForSchedulingAppointment( client.clientID, appointmentDate, employeeName );
+			boolean scheduled = client.askForSchedulingAppointment( client.getClientID(), appointmentDate, employeeName );
 	
 			if( scheduled )  executeChangeTransaction(client);
 	
