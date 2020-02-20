@@ -18,7 +18,7 @@ public class BookAppointmentTransaction {
 		for( int i = 0; i < bankEmployee.bankClientsWithAppointments.size(); ++i ) {
 
 			appointmentDate = bankEmployee.appointmentDates.get( i );
-			
+			employeeName = bankEmployee.name;
 			if(checkTransactionStructure()) {
 				BankClient bankClient = bankEmployee.bankClientsWithAppointments.get( i );
 	
@@ -32,25 +32,27 @@ public class BookAppointmentTransaction {
 				if( choice.equals( "1" ) ) executeChangeTransaction(bankClient); //we assume that we answer with this call to the client.
 			}
 		}
-	}
+	};
 	
-	public BookAppointmentTransaction(List<BankClient> bankClients,int client) 
+	public BookAppointmentTransaction(BankClient client) 
 	{
 		try { appointmentDate = new SimpleDateFormat( "dd/MM/yyyy" ).parse( StdInput.read( "apppoinment date" ) ); }
 		catch( ParseException ex ){ ex.printStackTrace(); }
 		
 		if(checkTransactionStructure()) {
 			
-			boolean scheduled = bankClients.get( client ).askForSchedulingAppointment( bankClients.get( client ).clientID, appointmentDate, employeeName );
+			boolean scheduled = client.askForSchedulingAppointment( client.clientID, appointmentDate, employeeName );
 	
-			if( scheduled )  executeChangeTransaction(bankClients.get( client ));
+			if( scheduled )  executeChangeTransaction(client);
 	
 			else notifyEmployee(scheduled);
 		}
+		else
+			 notifyEmployee(false);
 	}
 	
 	public boolean checkTransactionStructure() {
-		if(appointmentDate != null)
+		if(appointmentDate != null && adminName != null && employeeName != null)
 			return true;
 		return false;
 	}
@@ -58,26 +60,6 @@ public class BookAppointmentTransaction {
 	public void executeChangeTransaction(BankClient client) {
 		client.bookAppointment( appointmentDate, employeeName );
 		notifyEmployee(true);
-	}
-	
-	public void bookAppointmentsEmployee(BankEmployee bankEmployee) {
-		for( int i = 0; i < bankEmployee.bankClientsWithAppointments.size(); ++i ) {
-
-			appointmentDate = bankEmployee.appointmentDates.get( i );
-			
-			if(checkTransactionStructure()) {
-				BankClient bankClient = bankEmployee.bankClientsWithAppointments.get( i );
-	
-				System.out.println( "\nCandidate date = " + appointmentDate + " with client = " + bankClient.name );
-	
-				System.out.println( "1. Book it" );
-				System.out.println( "2. Do not book it" );
-				String choice = StdInput.read( "choice" );
-				
-				employeeName = bankEmployee.name ;
-				if( choice.equals( "1" ) ) executeChangeTransaction(bankClient); //we assume that we answer with this call to the client.
-			}
-		}
 	}
 	
 	public void notifyEmployee(boolean booked) {

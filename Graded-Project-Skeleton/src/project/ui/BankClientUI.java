@@ -116,7 +116,7 @@ public class BankClientUI {
 
 					//Requirement 8 - DONE
                     else if( choice.equals( "8" ) ) {
-                        BookAppointmentTransaction transaction = new BookAppointmentTransaction(bankClients, pos);
+                        BookAppointmentTransaction transaction = new BookAppointmentTransaction(bankClients.get(pos));
                     }
 				}
 			}
