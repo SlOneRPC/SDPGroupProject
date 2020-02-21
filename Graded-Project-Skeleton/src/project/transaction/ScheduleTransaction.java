@@ -12,7 +12,7 @@ public class ScheduleTransaction {
 	String adminName = "X", employeeName = "Y";
 	BankEmployee employee;
 	BankClient client;
-	ClientBooking clientBooking;
+	ClientBooking clientBooking = new ClientBooking();
 	
 	public ScheduleTransaction(BankEmployee currentEmployee, BankClient client,Date AppointmentDate,String employeeName) {
 		

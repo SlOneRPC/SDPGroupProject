@@ -13,7 +13,7 @@ public class MoneyTransferTransaction {
 	private int fromAccountNum;
 	private int toAccountNum;
 	private double amount;
-	InternalTransfer internalTransfer;
+	InternalTransfer internalTransfer = new InternalTransfer();
 
 	public MoneyTransferTransaction(BankClient bankClient) {
 		this.bankClient = bankClient;

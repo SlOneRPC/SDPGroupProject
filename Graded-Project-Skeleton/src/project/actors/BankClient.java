@@ -12,12 +12,7 @@ public class BankClient extends User{
 	public static final AtomicInteger clientCount = new AtomicInteger(0);
 	public static final AtomicInteger accountCount = new AtomicInteger(0);
 
-	private int clientID;
-	private String name; 
-	private String address;
-	private Date birthDate;
-
-	private ClientProfile clientProfile; 
+	private ClientProfile clientProfile;
 	
 	private String username;
 	private String password;
@@ -30,7 +25,6 @@ public class BankClient extends User{
 	
 		this.username = username;
 		this.password = password;
-		this.clientID = clientCount.incrementAndGet();
 
 	}
 
@@ -38,7 +32,7 @@ public class BankClient extends User{
 
 		if( name == null || address == null || birthDate == null ) System.err.println( "Error create profile transaction" );
 		else {
-			clientProfile = new ClientProfileImpl1(this.clientID, name, address, birthDate);
+			clientProfile = new ClientProfileImpl1(clientCount.incrementAndGet(), name, address, birthDate);
 		}
 	}
 
@@ -84,47 +78,22 @@ public class BankClient extends User{
 		if( name == null || address == null || birthDate == null || username == null || password == null ) System.err.println( "Error change details transaction" );
 
 		else {
-			this.name = name;
-			this.address = address;
-			this.birthDate = birthDate;
+			//this.name = name;
+			this.clientProfile.setName(name);
+					
+			//this.address = address;
+			this.clientProfile.setAddress(address);
+			
+			//this.birthDate = birthDate;
+			this.clientProfile.setBirthDate(birthDate);
+			
 			this.username = username;
 			this.password = password;
 		}
 	}
 	
 	//Getters & Setters (Encapsulation) - TODO Check if needed
-	public int getClientID() {
-		return clientID;
-	}
-
-	public void setClientID(int clientID) {
-		this.clientID = clientID;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getAddress() {
-		return address;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
-	public Date getBirthDate() {
-		return birthDate;
-	}
-
-	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
-	}
-
+	
 	public String getUsername() {
 		return username;
 	}
@@ -155,6 +124,10 @@ public class BankClient extends User{
 	
 	public void setClientProfile(ClientProfile clientProfile) {
 		this.clientProfile = clientProfile;
+	}
+	
+	public ClientProfile getClientProfile() {
+		return this.clientProfile;
 	}
 	
 }

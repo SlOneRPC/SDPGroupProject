@@ -2,25 +2,16 @@ package project.utilities;
 
 import java.util.Date;
 
-public class ClientProfileImpl1 implements ClientProfile{
+public class ClientProfileImpl1 extends ClientProfile{
 
-	private int clientID;
-	private String name; 
-	private String address;
-	private Date birthDate;
-	
 	public ClientProfileImpl1(int clientID, String name, String address, Date birthDate) {
-		this.clientID = clientID;
-		this.name= name;
-		this.address = address;
-		this.birthDate = birthDate;
+		super(name, address, birthDate, clientID);
 	}
 	
 	public void toPrint() {
-		System.out.println( "clientID = " + clientID );
-		if( name != null ) System.out.println( "name = " + name );
-		if( address != null ) System.out.println( "address = " + address );
-		if( birthDate != null ) System.out.println( "birthDate = " + birthDate);
+		System.out.println( "clientID = " + super.getClientID() );
+		if( super.getName() != null ) System.out.println( "name = " + super.getName() );
+		if( super.getAddress() != null ) System.out.println( "address = " + super.getAddress() );
+		if( super.getBirthDate() != null ) System.out.println( "birthDate = " + super.getBirthDate());
 	}
-	
 }

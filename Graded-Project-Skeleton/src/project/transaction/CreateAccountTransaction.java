@@ -9,7 +9,7 @@ public class CreateAccountTransaction {
 	String accountType;
 	int accountNumber;
 	BankClient bankClient;
-	AccountVerification accVerification;
+	AccountVerification accVerification = new AccountVerification();
 	
 	public CreateAccountTransaction(BankClient bankClient, String adminName) {		
 		this.bankClient = bankClient;
@@ -40,7 +40,7 @@ public class CreateAccountTransaction {
 	}
 	
 	private void executeCreateAccountTransaction(String adminName) {
-		boolean verified = accVerification.askForVerification(bankClient.getClientID(), accountNumber, adminName);
+		boolean verified = accVerification.askForVerification(bankClient.getClientProfile().getClientID(), accountNumber, adminName);
 		accVerification.verify(accountNumber, verified, bankClient.getAccounts());
 	}	
 }
