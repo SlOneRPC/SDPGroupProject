@@ -1,13 +1,7 @@
 package project.actors;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
 import project.utilities.*;
@@ -18,7 +12,6 @@ public class BankClient extends User{
 	public static final AtomicInteger clientCount = new AtomicInteger( 0 );
 	public static final AtomicInteger accountCount = new AtomicInteger( 0 );
 
-	//TODO create getters and setters for each of these
 	private int clientID;
 	private String name; 
 	private String address;
@@ -26,7 +19,6 @@ public class BankClient extends User{
 	
 	private ClientProfile clientProfile; 
 	
-
 	private String username;
 	private String password;
 
@@ -34,7 +26,7 @@ public class BankClient extends User{
 	private ArrayList<Appointment> appointments = new ArrayList<Appointment>();
 	
 	
-	public BankClient( String username, String password ){
+	public BankClient(String username, String password){
 	
 		this.username = username;
 		this.password = password;
@@ -42,16 +34,15 @@ public class BankClient extends User{
 
 	}
 
-	public void createProfile( String name, String address, Date birthDate ){
+	public void createProfile(String name, String address, Date birthDate){
 
 		if( name == null || address == null || birthDate == null ) System.err.println( "Error create profile transaction" );
 		else {
-			clientProfile = new ClientProfileImpl1(this.clientID,name, address, birthDate);
+			clientProfile = new ClientProfileImpl1(this.clientID, name, address, birthDate);
 		}
 	}
 
 	public int addAccount( String accountType ){
-
 		if( accountType == null || (accountType != null && ! accountType.equals( "primary" ) && ! accountType.equals( "savings" ) ) ) {
 			System.err.println( "Error create account transaction" );
 			return -1;
@@ -60,32 +51,34 @@ public class BankClient extends User{
 		else {		
 			if(accountType.equals("primary")) {
 				accounts.add(new PrimaryBankAccount(accountCount.incrementAndGet(), false, 0.0));
-			}else if(accountType.equals("savings")){
+			} else if(accountType.equals("savings")) {
 				accounts.add(new SavingsBankAccount(accountCount.incrementAndGet(), false, 0.0));
 			}		
 			return accountCount.get();
 		}
 	}
 	
-	//leave this
-		public void deleteAccount( int accountNumber ) {
+	public void deleteAccount( int accountNumber ) {
+		int pos = 0;
 
-			int pos = 0;
-
-			for( pos = 0; pos < accounts.size(); ++pos ) if( accounts.get( pos ).getAccountNumber() == accountNumber )break;
-
-			if( pos >= 0 && pos < accounts.size() ) {
-				accounts.remove(pos);
+		for( pos = 0; pos < accounts.size(); ++pos ) {
+			if( accounts.get( pos ).getAccountNumber() == accountNumber ) {
+				break;
 			}
 		}
-		
-	//leave
-	public void toPrint() {
-		clientProfile.toPrint();
-		for( int i = 0; accounts != null && i < accounts.size(); ++i ) System.out.println( "\taccountNumber: " + accounts.get(i).getAccountNumber() );
+
+		if( pos >= 0 && pos < accounts.size() ) {
+			accounts.remove(pos);
+		}
 	}
 		
-	//leave this
+	public void toPrint() {
+		clientProfile.toPrint();
+		for( int i = 0; accounts != null && i < accounts.size(); i++ ) {
+			System.out.println( "\tAccount Number: " + accounts.get(i).getAccountNumber() );
+		}
+	}
+		
 	public void changeClientDetails( String name, String address, Date birthDate, String username, String password ){
 
 		if( name == null || address == null || birthDate == null || username == null || password == null ) System.err.println( "Error change details transaction" );
@@ -99,7 +92,7 @@ public class BankClient extends User{
 		}
 	}
 	
-	//getters and setters TODO delete some of these?
+	//Getters & Setters (Encapsulation) - TODO Check if needed
 	public int getClientID() {
 		return clientID;
 	}

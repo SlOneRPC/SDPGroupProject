@@ -15,8 +15,12 @@ public class CreateAccountTransaction {
 		this.bankClient = bankClient;
 		provideDetails(adminName);
 		String error = checkTransactionStructure();
-		if( error != null ) printErrorMessage( error );	
-		else {executeCreateAccountTransaction(adminName);}
+		if( error != null ) {
+			printErrorMessage( error );	
+		}
+		else {
+			executeCreateAccountTransaction(adminName);
+		}
 	}
 	
 	private void provideDetails(String adminName) {
@@ -25,8 +29,9 @@ public class CreateAccountTransaction {
 	}
 	
 	private String checkTransactionStructure() {
-		//NOTE: IDK ABOUT THE -1 PART
-		if( accountType == null || accountNumber == -1 ) return "Error register transaction" ;
+		if( accountType == null || accountNumber == -1 ) {
+			return "Error register transaction" ;
+		}
 		return null;
 	}
 	
@@ -35,9 +40,7 @@ public class CreateAccountTransaction {
 	}
 	
 	private void executeCreateAccountTransaction(String adminName) {
-		//boolean verified = bankClient.askForVerification( bankClient.getClientID(), accountNumber, adminName ); 
 		boolean verified = accVerification.askForVerification(bankClient.getClientID(), accountNumber, adminName);
-		//bankClient.verify(accountNumber, verified);
 		accVerification.verify(accountNumber, verified, bankClient.getAccounts());
 	}	
 }

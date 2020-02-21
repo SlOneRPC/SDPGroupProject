@@ -13,10 +13,12 @@ public class LoginTransaction {
 	int pos = 0;
 	
 	public LoginTransaction(List<BankClient> bankClients) {
-
 		provideDetails();
 		String error = checkTransactionStructure();
-		if(error != null) printErrorMessage(error);
+		
+		if(error != null) { 
+			printErrorMessage(error);
+		}
 		else {
 			for( pos = 0; pos < bankClients.size(); pos++ ){
 				if( bankClients.get( pos ).getUsername().equals( username ) && bankClients.get( pos ).getPassword().equals( password ) )

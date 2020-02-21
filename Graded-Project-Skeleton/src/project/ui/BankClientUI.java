@@ -2,13 +2,8 @@ package project.ui;
 
 
 import project.utilities.*;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import project.actors.BankClient;
@@ -21,50 +16,54 @@ public class BankClientUI {
 	public static void main( String[] args ) throws ParseException {
 
 		List<BankClient> bankClients = new ArrayList<>();
-		String adminName = "X", employeeName = "Y";
+		String adminName = "X";
+		//String employeeName = "Y"; - Not Used; Check Why Later
 		
 		while(true){
 			print(bankClients);
+			System.out.println("0. Exit");
+			System.out.println("1. Register");
+			System.out.println("2. Login");
+			String choice = StdInput.read("choice");
 
-			System.out.println( "\n0. Exit" );
-			System.out.println( "1. Register" ); //--> Create Profile --> Create Account --> Create Further Accounts
-			System.out.println( "2. Login" );
-			String choice = StdInput.read( "choice" );
-
-			if( choice.equals( "0" ) ) break;
-
-			else if( choice.equals( "1" ) ) {
+			if(choice.equals("0")) {
+				System.out.println("\n(!) Application Exited");
+				break;
+			}
+			else if(choice.equals( "1" )) {
 				BankClient bankClient;
 			
-				//TODO Requirement 1
+				//Requirement 1: Register Bank Client
 				RegisterTransaction rt = new RegisterTransactionImpl1();
 				rt.registerBankClient(bankClients);
 				
-				bankClient = bankClients.get(bankClients.size() -1);//perhaps change the transaction return type
+				bankClient = bankClients.get(bankClients.size() -1);
 				
-				//TODO Requirement 2
-				CreateProfileTransaction cpt = new CreateProfileTransaction(bankClient);
+				//Requirement 2: Create Profile
+				CreateProfileTransaction cpt = new CreateProfileTransaction();
+				cpt.createProfile(bankClient);
 
-				//TODO Requirement 3
-				while( true ){
+				//Requirement 3: Create Account + Further Accounts
+				while(true) {
 					CreateAccountTransaction cat = new CreateAccountTransaction(bankClient, adminName);
-					System.out.println( "\n0. NO extra account" );
-					System.out.println( "1. Extra account" );
-					String choice2 = StdInput.read( "choice" );
-					if( choice2.equals( "0" ) ) break;
+					System.out.println( "\n0. No extra account");
+					System.out.println( "1. Extra account");
+					String choice2 = StdInput.read("choice");
+					
+					if( choice2.equals("0")) {
+						break;
+					}
 				}
 			}
-
-			else if( choice.equals( "2" ) ) {
-		
-				//TODO Requirement 4
-			
+			else if(choice.equals("2")) {
+				
+				//Requirement 4: Login 
 				LoginTransaction lt = new LoginTransaction(bankClients);
-				int pos = lt.executeLoginTransaction();//Not sure about this, but it still works
-				if( pos < 0 || pos >= bankClients.size() ) System.err.println( "Invalid username or password" );
-
+				int pos = lt.executeLoginTransaction();
+				if(pos < 0 || pos >= bankClients.size()) {
+					System.err.println( "Invalid username or password" );
+				}
 				else {
-					//bankClients.get( pos ).toPrint();
 					BankClient bankClient;
 					ListBankAccount accountDetail = new ListBankAccount();
 					
@@ -81,23 +80,22 @@ public class BankClientUI {
 					System.out.println( "8. Book Appoinment" );
 					choice = StdInput.read( "choice" );
 
-
-					//TODO Requirement 5
+					//Requirement 5: Change Details
 					if( choice.equals( "5" ) ) {
 						new ChangeDetailsTransaction(bankClients, pos);
 					}
 
-					//TODO Requirement 6
+					//Requirement 6: Delete Bank Account
 					else if( choice.equals( "6" ) ) {
 						new DeleteTransaction(bankClients.get(pos), bankClients);
 					}
 
-					//TODO Requirement 7
+					//Requirement 7: Internal Money Transfer
 					else if( choice.equals( "7" ) ) {
 						new MoneyTransferTransaction(bankClients.get(pos));
 					}
 
-					//Requirement 8 - DONE
+					//Requirement 8: Book an Appointment
                     else if( choice.equals( "8" ) ) {
                         BookAppointmentTransaction transaction = new BookAppointmentTransaction(bankClients.get(pos));
                     }
@@ -108,8 +106,9 @@ public class BankClientUI {
 	
 	public static void print(List<BankClient> bankClients) {
 
-		System.out.println( "Bank Clients:\n" );
-
-		for( int i = 0; bankClients != null && i < bankClients.size(); ++i ) bankClients.get( i ).toPrint();
+		System.out.println( "Bank Client UI:\n===============" );
+		for( int i = 0; bankClients != null && i < bankClients.size(); i++ ) {
+			bankClients.get( i ).toPrint();
+		}
 	}
 }

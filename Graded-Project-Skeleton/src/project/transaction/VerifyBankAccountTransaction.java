@@ -4,7 +4,6 @@ import project.actors.BankAdmin;
 import project.actors.BankClient;
 import project.utilities.AccountVerification;
 import project.utilities.BankAccount;
-import project.utilities.StdInput;
 
 public class VerifyBankAccountTransaction {
 	

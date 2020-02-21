@@ -12,19 +12,25 @@ public class CreateProfileTransaction {
 	String address;
 	Date birthDate;
 	
-	public CreateProfileTransaction(BankClient client) {
+	public void createProfile(BankClient client) {
 		provideDetails();
 		String error = checkTransactionStructure();
-		if( error != null ) printErrorMessage( error );
-		else {executeCreateProfileTransaction(client);}
+		if( error != null ) {
+			printErrorMessage( error );
+		}
+		else {
+			executeCreateProfileTransaction(client);
+		}
 	}
 	
 	private void provideDetails() {
-		 name = StdInput.read( "name" );
-		 address = StdInput.read( "address" );
+		 name = StdInput.read("name");
+		 address = StdInput.read("address");
 		 try {
 			 birthDate = new SimpleDateFormat( "dd/MM/yyyy" ).parse( StdInput.read( "birthDate" ));
-		 }catch(Exception ex) {}	 
+		 } catch(Exception ex) {
+			 
+		 }	 
 	}
 	
 	private String checkTransactionStructure() {
@@ -32,8 +38,8 @@ public class CreateProfileTransaction {
 		return null;
 	}
 	
-	private void printErrorMessage( String message ) {
-		System.err.println( message );
+	private void printErrorMessage(String message) {
+		System.err.println("\n" + message);
 	}
 	
 	private void executeCreateProfileTransaction(BankClient client) {

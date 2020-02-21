@@ -39,7 +39,7 @@ public class InternalTransfer {
 	}
 	
 	private BankAccount getToAccount(int targetAccount) {
-		 to = 0;
+		to = 0;
 		BankAccount result = null;
 		for( to = 0; to < accounts.size(); to++ ) {
 

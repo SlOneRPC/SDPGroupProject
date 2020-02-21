@@ -1,12 +1,9 @@
 package project.transaction;
 
-import java.util.List;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-
 import project.actors.BankClient;
-import project.actors.BankEmployee;
 import project.utilities.ClientBooking;
 import project.utilities.StdInput;
 
@@ -18,30 +15,37 @@ public class BookAppointmentTransaction {
 	
 	public BookAppointmentTransaction(BankClient client) 
 	{
-		try { appointmentDate = new SimpleDateFormat( "dd/MM/yyyy" ).parse( StdInput.read( "apppoinment date" ) ); }
-		catch( ParseException ex ){ ex.printStackTrace(); }
+		try { 
+			appointmentDate = new SimpleDateFormat("dd/MM/yyyy").parse(StdInput.read("apppoinment date")); 
+		}
+		catch(ParseException ex) {
+			ex.printStackTrace(); 
+		}
 		
 		if(checkTransactionStructure()) {
 			
-			//boolean scheduled = client.askForSchedulingAppointment( client.getClientID(), appointmentDate, employeeName );
 			boolean scheduled = clientBooking.askForSchedulingAppointment(client.getClientID(), appointmentDate, employeeName);
 			
-			if( scheduled )  executeChangeTransaction(client);
-	
-			else printErrorMsg();
+			if(scheduled) {
+				executeChangeTransaction(client);
+			}
+			else {
+				printErrorMsg();
+			}
 		}
-		else
+		else {
 			printErrorMsg();
+		}
 	}
 		
 	public boolean checkTransactionStructure() {
-		if(appointmentDate != null && adminName != null && employeeName != null)
+		if(appointmentDate != null && adminName != null && employeeName != null) {
 			return true;
+		}
 		return false;
 	}
 	
 	public void executeChangeTransaction(BankClient client) {
-		//client.bookAppointment( appointmentDate, employeeName );
 		clientBooking.bookAppointment(appointmentDate, employeeName, client.getAppointments());
 		notifyEmployee();
 	}

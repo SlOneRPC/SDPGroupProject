@@ -21,10 +21,12 @@ public class ScheduleTransaction {
 		this.employee = currentEmployee;
 		this.client = client;
 		
-		if(checkTransactionStructure() ) 
+		if(checkTransactionStructure()) {
 			executeChangeTransaction(client);
-		else
+		}
+		else {
 			printErrorMsg();
+		}
 	}
 
 
@@ -32,8 +34,8 @@ public class ScheduleTransaction {
 		if(appointmentDate != null && adminName != null && employeeName != null) {
 			
 			int i = 0;
-			for(Date date:employee.appointmentDates) //ensure no two appointments are on the same day
-			{
+			for(Date date:employee.appointmentDates) { //ensure no two appointments are on the same day
+				
 				if(date == appointmentDate && employee.bankClientsWithAppointments.get(i) != client) {
 					return false;
 				}

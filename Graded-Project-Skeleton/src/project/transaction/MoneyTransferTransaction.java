@@ -28,7 +28,6 @@ public class MoneyTransferTransaction {
 	}
 	
 	private void provideTransferDetails() {
-		//bankClient.printAccounts();
 		accountDetail.printAllAccounts(bankClient.getAccounts());
 		
 		fromAccountNum = Integer.parseInt(StdInput.read( "from account number" ) );
@@ -37,8 +36,6 @@ public class MoneyTransferTransaction {
 	}
 	
 	private String checkTransactionStructure() {	
-		//inefficient code
-		//TODO look into the references , look for a workaround	
 		if(fromAccountNum != toAccountNum && amount > 0 && bankClient.getAccounts().stream().anyMatch(o -> o.getAccountNumber() == fromAccountNum) 
 				&& bankClient.getAccounts().stream().anyMatch(o -> o.getAccountNumber() == fromAccountNum) && bankClient.getAccounts().get(fromAccountNum).getBalance() > 0) {
 			return null;
@@ -51,7 +48,6 @@ public class MoneyTransferTransaction {
 	}
 	
 	private void executeMoneyTransferTransaction() {
-		//bankClient.transfer(fromAccountNum, toAccountNum, amount);
 		internalTransfer.transfer(fromAccountNum, toAccountNum, amount, bankClient.getAccounts());
 	}
 	
