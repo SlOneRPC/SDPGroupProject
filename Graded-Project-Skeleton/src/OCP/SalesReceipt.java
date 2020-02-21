@@ -5,7 +5,7 @@ import java.util.Date;
 
 public abstract class SalesReceipt {
 
-	private Date salesReceiptDate;
+	public Date salesReceiptDate;
 	public Double salesReceiptAmount;
 
 
