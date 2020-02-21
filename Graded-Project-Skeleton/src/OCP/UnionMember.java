@@ -1,4 +1,4 @@
-package exampleGroupProject.principledDesign.principles.OCP;
+package OCP;
 
 import java.util.concurrent.atomic.AtomicInteger;
 

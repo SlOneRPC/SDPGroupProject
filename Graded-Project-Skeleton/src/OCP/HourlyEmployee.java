@@ -1,4 +1,4 @@
-package exampleGroupProject.principledDesign.principles.OCP;
+package OCP;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -4,46 +4,54 @@ import java.util.ArrayList;
 
 public class InternalTransfer {
 
+	ArrayList<BankAccount> accounts;
+	int from, to;
+	
 	public void transfer( int fromAccountNumber, int toAccountNumber, double amount, ArrayList<BankAccount> accounts ) {
 
-		int from = 0;
-		BankAccount fromAccount = new BankAccount(), toAccount = new BankAccount();
-		
-		for( from = 0; from < accounts.size(); ++from ) {
-
-			if( accounts.get( from ).getAccountNumber() == fromAccountNumber  ) {
-				fromAccount = accounts.get(from);
-				System.out.println( "\tFrom accountNumber: " + fromAccount.getAccountNumber());
-				System.out.println( "\ttFrom accountType: " + fromAccount.toString());//TODO test this out
-				System.out.println( "\ttFrom accountVerified: " + fromAccount.getVerified() );
-				System.out.println( "\ttFrom accountBalance: " + fromAccount.getBalance() );		
-			}
-		}
-
-		int to = 0;
-
-		for( to = 0; to < accounts.size(); ++to ) {
-
-			if( accounts.get( to ).getAccountNumber() == toAccountNumber  ) {
-				toAccount = accounts.get(to);
-				
-				System.out.println( "\tFrom accountNumber: " + toAccount.getAccountNumber());
-				System.out.println( "\ttFrom accountType: " + toAccount.toString());//TODO test this out
-				System.out.println( "\ttFrom accountVerified: " + toAccount.getVerified() );
-				System.out.println( "\ttFrom accountBalance: " + toAccount.getBalance() );
-			}
-		}
-
-		//if( from >= 0 && from < accountNumbers.size() && to >= 0 && to < accountNumbers.size() && accountBalances.get( from ) >= amount ) {
-		if( from >= 0 && from < accounts.size() && to >= 0 && to < accounts.size() && fromAccount.getBalance() >= amount ) {
-			
+		this.accounts = accounts;
+		BankAccount fromAccount = getFromAccount(fromAccountNumber), toAccount = getToAccount(toAccountNumber);
+	
+		if( from >= 0 && from < accounts.size() && to >= 0 && to < accounts.size() && fromAccount.getBalance() >= amount ) {	
 			fromAccount.setBalance(fromAccount.getBalance() - amount);
-
-			toAccount.setBalance(toAccount.getBalance() - amount);
-			
+			toAccount.setBalance(toAccount.getBalance() + amount);
 			System.out.println( "Transfer is completed" );
 		}
-
+		
 		else System.out.println( "Transfer cannot be made" );
+	}
+	
+	private BankAccount getFromAccount(int targetAccount) {
+		from = 0;
+		BankAccount result = null;
+		for( from = 0; from < accounts.size(); from++ ) {
+
+			if( accounts.get( from ).getAccountNumber() == targetAccount  ) {
+				result = accounts.get(from);
+				System.out.println( "\tFrom accountNumber: " + result.getAccountNumber());
+				System.out.println( "\tFrom accountType: " + result.toString());
+				System.out.println( "\tFrom accountVerified: " + result.getVerified() );
+				System.out.println( "\tFrom accountBalance: " + result.getBalance() );	
+				return result;
+			}
+		}
+		return result;
+	}
+	
+	private BankAccount getToAccount(int targetAccount) {
+		 to = 0;
+		BankAccount result = null;
+		for( to = 0; to < accounts.size(); to++ ) {
+
+			if( accounts.get( to ).getAccountNumber() == targetAccount  ) {
+				result = accounts.get(to);
+				System.out.println( "\tTo accountNumber: " + result.getAccountNumber());
+				System.out.println( "\tTo accountType: " + result.toString());
+				System.out.println( "\tTo accountVerified: " + result.getVerified() );
+				System.out.println( "\tTo accountBalance: " + result.getBalance() );		
+				return result;
+			}
+		}
+		return result;
 	}
 }

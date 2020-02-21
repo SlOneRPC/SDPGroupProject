@@ -1,4 +1,4 @@
-package exampleGroupProject.principledDesign.principles.OCP;
+package OCP;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;

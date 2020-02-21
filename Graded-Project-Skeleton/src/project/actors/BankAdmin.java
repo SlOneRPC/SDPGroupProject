@@ -2,7 +2,7 @@ package project.actors;
 
 import java.util.List;
 
-public class BankAdmin extends Person{
+public class BankAdmin extends User{
 
 	public String name = "Y";
 
@@ -11,5 +11,4 @@ public class BankAdmin extends Person{
 	
 	public BankAdmin() {}
 	
-	public void toPrint() {}
 }

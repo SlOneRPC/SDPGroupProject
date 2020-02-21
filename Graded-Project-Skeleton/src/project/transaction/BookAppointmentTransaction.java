@@ -33,7 +33,7 @@ public class BookAppointmentTransaction {
 		else
 			printErrorMsg();
 	}
-	
+		
 	public boolean checkTransactionStructure() {
 		if(appointmentDate != null && adminName != null && employeeName != null)
 			return true;

@@ -4,7 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 
-public class BankEmployee extends Person{
+public class BankEmployee extends User{
 	
 	public String name = "X";
 
@@ -12,6 +12,5 @@ public class BankEmployee extends Person{
 	public List<Date> appointmentDates;
 	
 	public BankEmployee() { }
-	
-	public void toPrint() {}
+
 }
