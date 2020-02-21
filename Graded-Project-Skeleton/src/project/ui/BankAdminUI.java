@@ -36,7 +36,7 @@ public class BankAdminUI {
 		BankClient bankClient2 = new BankClient("u2", "p2");
 		int accountNumber2 = bankClient2.addAccount("savings");
 		try {
-			bankClient2.setClientProfile(new ClientProfileImpl1(accountNumber1, "B", "Address B", 
+			bankClient2.setClientProfile(new ClientProfileImpl1(accountNumber2, "B", "Address B", 
 					new SimpleDateFormat("dd/MM/yyyy").parse("12/10/2000")));
 		} catch (ParseException e) {e.printStackTrace();} 
 		
@@ -55,7 +55,8 @@ public class BankAdminUI {
 			String choice = StdInput.read("choice");
 			
 			if(choice.equals("1")) {
-				new VerifyBankAccountTransaction(bankAdmin, i);
+				VerifyBankAccountTransaction vbt  = new VerifyBankAccountTransaction();
+				vbt.verifyBankAccountTransaction(bankAdmin, i);
 			}
 		}	
 	}

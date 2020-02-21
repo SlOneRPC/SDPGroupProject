@@ -9,14 +9,13 @@ import project.utilities.StdInput;
 public class DeleteTransaction {
 	BankClient bankClient;
 	List<BankClient> bankClients;
-	ListBankAccount accDetail;	
+	ListBankAccount listBankAccount = new ListBankAccount();	
 	 int accountNum;
 	 int accountIndex;
 
 	public void deleteTransaction(BankClient bankClient, List<BankClient> bankClients) {
 		this.bankClient = bankClient;
 		this.bankClients = bankClients;
-		accDetail = new ListBankAccount();
 		
 		
 		provideAccountNumber();
@@ -29,7 +28,7 @@ public class DeleteTransaction {
 	}
 	
 	private void provideAccountNumber() {
-		accDetail.printAllAccounts(bankClient.getAccounts());
+		listBankAccount.printAllAccounts(bankClient.getAccounts());
 		accountNum = Integer.parseInt(StdInput.read("account number"));
 	}
 	
