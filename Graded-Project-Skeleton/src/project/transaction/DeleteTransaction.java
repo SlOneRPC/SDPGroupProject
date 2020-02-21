@@ -37,7 +37,8 @@ public class DeleteTransaction {
 		//TODO look into this, look for a workaround
 		if(bankClients != null) {
 			for( int index = 0; index < bankClient.getAccounts().size(); index++ ) {
-				if( bankClient.getAccounts().get(index).getAccountNumber() ==  accountNum) {
+
+				if(bankClient.getAccounts().get(index).getAccountNumber() ==  accountNum) {
 					return null;
 				}
 			}
