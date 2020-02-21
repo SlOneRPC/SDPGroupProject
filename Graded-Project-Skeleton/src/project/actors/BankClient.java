@@ -9,14 +9,14 @@ import project.utilities.*;
 
 public class BankClient extends User{
 
-	public static final AtomicInteger clientCount = new AtomicInteger( 0 );
-	public static final AtomicInteger accountCount = new AtomicInteger( 0 );
+	public static final AtomicInteger clientCount = new AtomicInteger(0);
+	public static final AtomicInteger accountCount = new AtomicInteger(0);
 
 	private int clientID;
 	private String name; 
 	private String address;
 	private Date birthDate;
-	
+
 	private ClientProfile clientProfile; 
 	
 	private String username;
@@ -42,7 +42,7 @@ public class BankClient extends User{
 		}
 	}
 
-	public int addAccount( String accountType ){
+	public int addAccount(String accountType){
 		if( accountType == null || (accountType != null && ! accountType.equals( "primary" ) && ! accountType.equals( "savings" ) ) ) {
 			System.err.println( "Error create account transaction" );
 			return -1;
@@ -66,7 +66,7 @@ public class BankClient extends User{
 				break;
 			}
 		}
-
+		
 		if( pos >= 0 && pos < accounts.size() ) {
 			accounts.remove(pos);
 		}
@@ -151,6 +151,10 @@ public class BankClient extends User{
 	
 	public ArrayList<Appointment> getAppointments() {
 		return appointments;
+	}
+	
+	public void setClientProfile(ClientProfile clientProfile) {
+		this.clientProfile = clientProfile;
 	}
 	
 }

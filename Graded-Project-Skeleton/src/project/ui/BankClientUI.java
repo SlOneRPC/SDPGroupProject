@@ -73,12 +73,12 @@ public class BankClientUI {
 					int accountNumber = Integer.parseInt(StdInput.read( "account number" ));				
 					accountDetail.printAccount(bankClient.getAccounts(), accountNumber);
 					
-					System.out.println( "\n0. Exit" );
-					System.out.println( "5. Change Bank Client Details" );
-					System.out.println( "6. Delete Bank Account" );
-					System.out.println( "7. Money transfer" );
-					System.out.println( "8. Book Appoinment" );
-					choice = StdInput.read( "choice" );
+					System.out.println("\n0. Exit");
+					System.out.println("5. Change Bank Client Details");
+					System.out.println("6. Delete Bank Account");
+					System.out.println("7. Money transfer" );
+					System.out.println("8. Book Appoinment");
+					choice = StdInput.read("choice");
 
 					//Requirement 5: Change Details
 					if( choice.equals( "5" ) ) {

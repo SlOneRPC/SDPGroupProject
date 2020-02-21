@@ -1,5 +1,8 @@
 package project.ui;
 
+import java.sql.Date;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import project.actors.*;
@@ -19,12 +22,27 @@ public class BankAdminUI {
 
 		BankClient bankClient1 = new BankClient("u1", "p1");
 		int accountNumber1 = bankClient1.addAccount("primary");
+		
+		try {
+			bankClient1.setClientProfile(new ClientProfileImpl1(accountNumber1, "Fake Name", "Fake Address", 
+					new SimpleDateFormat("dd/MM/yyyy").parse("10/10/1010")));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} 
+		
 		bankAdmin.bankClientsToVerify.add(bankClient1);
 		bankAdmin.accountNumbersToVerify.add(accountNumber1);
 
 		BankClient bankClient2 = new BankClient("u2", "p2");
 		int accountNumber2 = bankClient2.addAccount("savings");
-		bankAdmin.bankClientsToVerify.add( bankClient2 );
+		try {
+			bankClient2.setClientProfile(new ClientProfileImpl1(accountNumber1, "Fake Name 2", "Fake Address 2", 
+					new SimpleDateFormat("dd/MM/yyyy").parse("10/10/1010")));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		} 
+		
+		bankAdmin.bankClientsToVerify.add(bankClient2);
 		bankAdmin.accountNumbersToVerify.add(accountNumber2);
 		
 		print(bankAdmin.bankClientsToVerify);
@@ -46,7 +64,7 @@ public class BankAdminUI {
 	
 	public static void print(List<BankClient> bankClients) {
 
-		for( int i = 0; i < bankClients.size(); i++ ) { //Deleted Null Condition
+		for(int i = 0; bankClients != null && i < bankClients.size(); i++) {
 			bankClients.get(i).toPrint();
 		}
 	}
