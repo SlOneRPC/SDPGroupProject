@@ -1,11 +1,11 @@
-package exampleGroupProject.principledDesign.principles.OCP;
+package OCP;
 
 import java.util.Date;
 
 
 public abstract class SalesReceipt {
 
-	public Date salesReceiptDate;
+	private Date salesReceiptDate;
 	public Double salesReceiptAmount;
 
 
