@@ -25,8 +25,8 @@ public class BankAdminUI {
 		int accountNumber1 = bankClient1.addAccount("primary");
 		
 		try {
-			bankClient1.setClientProfile(new ClientProfileImpl1(accountNumber1, "Fake Name", "Fake Address", 
-					new SimpleDateFormat("dd/MM/yyyy").parse("10/10/1010")));
+			bankClient1.setClientProfile(new ClientProfileImpl1(accountNumber1, "A", "Address A", 
+					new SimpleDateFormat("dd/MM/yyyy").parse("20/12/2000")));
 		} catch (ParseException e) {e.printStackTrace();} 
 		
 		bankAdmin.bankClientsToVerify.add(bankClient1);
@@ -36,8 +36,8 @@ public class BankAdminUI {
 		BankClient bankClient2 = new BankClient("u2", "p2");
 		int accountNumber2 = bankClient2.addAccount("savings");
 		try {
-			bankClient2.setClientProfile(new ClientProfileImpl1(accountNumber1, "Fake Name 2", "Fake Address 2", 
-					new SimpleDateFormat("dd/MM/yyyy").parse("10/10/1010")));
+			bankClient2.setClientProfile(new ClientProfileImpl1(accountNumber1, "B", "Address B", 
+					new SimpleDateFormat("dd/MM/yyyy").parse("12/10/2000")));
 		} catch (ParseException e) {e.printStackTrace();} 
 		
 		bankAdmin.bankClientsToVerify.add(bankClient2);

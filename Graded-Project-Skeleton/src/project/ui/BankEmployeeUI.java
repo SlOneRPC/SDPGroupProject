@@ -22,11 +22,13 @@ public class BankEmployeeUI {
 		bankEmployee.bankClientsWithAppointments = new ArrayList<BankClient>();
 		bankEmployee.appointmentDates = new ArrayList<Date>();
 
+		//CLIENT 1
 		BankClient bankClient1 = new BankClient( "u1", "p1" );
 		bankClient1.setName("A");
 		bankEmployee.bankClientsWithAppointments.add( bankClient1 );
 		bankEmployee.appointmentDates.add( new SimpleDateFormat( "dd/MM/yyyy" ).parse( "20/12/2000" ) );
 
+		//CLIENT 2
 		BankClient bankClient2 = new BankClient( "u2", "p2" );
 		bankClient2.setName("B"); 
 		bankEmployee.bankClientsWithAppointments.add( bankClient2 );
