@@ -47,7 +47,8 @@ public class BankEmployeeUI {
 				String choice = StdInput.read("choice");
 				
 				if(choice.equals("1")) {
-					new ScheduleTransaction(bankEmployee, bankClient, appointmentDate,  bankEmployee.name);
+					ScheduleTransaction st = new ScheduleTransaction();
+					st.scheduleTransaction(bankEmployee, bankClient, appointmentDate,  bankEmployee.name);
 				}
 		}
 	}

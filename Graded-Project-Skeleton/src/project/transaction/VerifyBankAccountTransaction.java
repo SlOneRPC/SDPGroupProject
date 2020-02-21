@@ -9,12 +9,14 @@ public class VerifyBankAccountTransaction {
 	
 	int accountNumber = -1;
 	BankClient client;
-	AccountVerification accVerification = new AccountVerification();
+	AccountVerification accVerification;
 	
-	public VerifyBankAccountTransaction(BankAdmin bankAdmin,int clientIndex) {
+	public void verifyBankAccountTransaction(BankAdmin bankAdmin,int clientIndex) {
 		
 			accountNumber = bankAdmin.accountNumbersToVerify.get( clientIndex );
 			this.client = bankAdmin.bankClientsToVerify.get( clientIndex );
+			accVerification = new AccountVerification();
+			
 			
 			if(checkTransactionStructure()) {
 				executeVerifyBankAccountTransaction(client);
@@ -24,24 +26,25 @@ public class VerifyBankAccountTransaction {
 		
 	}
 	
-	public boolean checkTransactionStructure() {
-		if(accountNumber != -1) {
+	private boolean checkTransactionStructure() {
+		if(accountNumber != -1)//check if the account number if invalid
+		{
 			for(BankAccount bankAccount: client.getAccounts()) {
 				if(bankAccount.getAccountNumber() == accountNumber)//check if the account exists
 				{
-					if(bankAccount.getVerified() == false) //TODO check if there is missing information
+					if(bankAccount.getVerified() == false) //Checked if account is already verified
 						return true;
 				}
 			}
 		}
 		return false;
 	}
-	public void executeVerifyBankAccountTransaction(BankClient clientToVerify) {
-		//clientToVerify.verify( accountNumber, true );//we assume that we are answering to the client with this call
+	
+	private void executeVerifyBankAccountTransaction(BankClient clientToVerify) {
 		accVerification.verify(accountNumber, true, clientToVerify.getAccounts());
 	}
 	
-	public void printErrorMsg() {
+	private void printErrorMsg() {
 		System.err.println("Verify Bank Account error!");
 	}
 	

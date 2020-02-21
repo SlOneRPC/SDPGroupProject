@@ -11,8 +11,10 @@ public class CreateAccountTransaction {
 	BankClient bankClient;
 	AccountVerification accVerification;
 	
-	public CreateAccountTransaction(BankClient bankClient, String adminName) {		
+	public void createAccountTransaction(BankClient bankClient, String adminName) {		
 		this.bankClient = bankClient;
+		accVerification = new AccountVerification();
+		
 		provideDetails(adminName);
 		String error = checkTransactionStructure();
 		if( error != null ) {

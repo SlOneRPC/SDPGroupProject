@@ -18,7 +18,7 @@ public class ChangeDetailsTransaction {
 	private String username;
 	private String password;
 	
-	public ChangeDetailsTransaction(List<BankClient> bankClients, int pos) {
+	public void changeDetailsTransaction(List<BankClient> bankClients, int pos) {
 		this.bankClients = bankClients;
 		this.pos = pos;
 		
@@ -30,6 +30,7 @@ public class ChangeDetailsTransaction {
 			executeChangeDetailsTransaction();
 		}
 	}
+	
 	
 	private void provideNewBankClientDetails() {
 		name = StdInput.read("new name");

@@ -15,8 +15,10 @@ public class MoneyTransferTransaction {
 	private double amount;
 	InternalTransfer internalTransfer;
 
-	public MoneyTransferTransaction(BankClient bankClient) {
+	public void moneyTransferTransaction(BankClient bankClient) {
 		this.bankClient = bankClient;
+		accountDetail = new ListBankAccount();
+		internalTransfer = new InternalTransfer();
 		
 		provideTransferDetails();
 		if(checkTransactionStructure() != null) {

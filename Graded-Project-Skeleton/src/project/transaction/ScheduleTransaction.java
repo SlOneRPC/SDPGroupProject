@@ -14,12 +14,13 @@ public class ScheduleTransaction {
 	BankClient client;
 	ClientBooking clientBooking;
 	
-	public ScheduleTransaction(BankEmployee currentEmployee, BankClient client,Date AppointmentDate,String employeeName) {
+	public void scheduleTransaction(BankEmployee currentEmployee, BankClient client,Date AppointmentDate,String employeeName) {
 		
 		this.appointmentDate = AppointmentDate;
 		this.employeeName = employeeName;
 		this.employee = currentEmployee;
 		this.client = client;
+		clientBooking = new ClientBooking();
 		
 		if(checkTransactionStructure()) {
 			executeChangeTransaction(client);
@@ -32,9 +33,8 @@ public class ScheduleTransaction {
 
 	public boolean checkTransactionStructure() {
 		if(appointmentDate != null && adminName != null && employeeName != null) {
-			
 			int i = 0;
-			for(Date date:employee.appointmentDates) { //ensure no two appointments are on the same day
+			for(Date date:employee.appointmentDates) { //ensure no two appointments are on the same day (Conflicting Appointments)
 				
 				if(date == appointmentDate && employee.bankClientsWithAppointments.get(i) != client) {
 					return false;
@@ -47,7 +47,6 @@ public class ScheduleTransaction {
 	}
 	
 	public void executeChangeTransaction(BankClient client) {
-		//client.bookAppointment( appointmentDate, employeeName );
 		clientBooking.bookAppointment(appointmentDate, employeeName, client.getAppointments());
 		notifyClient();
 	}

@@ -9,18 +9,20 @@ import project.utilities.StdInput;
 
 public class BookAppointmentTransaction {
 
-	Date appointmentDate = null;
-	String adminName = "X", employeeName = "Y";
-	ClientBooking clientBooking;
+	private Date appointmentDate = null;
+	private String adminName = "X", employeeName = "Y";
+	private ClientBooking clientBooking;
 	
-	public BookAppointmentTransaction(BankClient client) 
-	{
+	public void bookAppointmentTransaction(BankClient client) {
+
 		try { 
 			appointmentDate = new SimpleDateFormat("dd/MM/yyyy").parse(StdInput.read("apppoinment date")); 
 		}
 		catch(ParseException ex) {
 			ex.printStackTrace(); 
 		}
+		clientBooking = new ClientBooking();
+		
 		
 		if(checkTransactionStructure()) {
 			
@@ -37,24 +39,24 @@ public class BookAppointmentTransaction {
 			printErrorMsg();
 		}
 	}
-		
-	public boolean checkTransactionStructure() {
+	
+	private boolean checkTransactionStructure() {
 		if(appointmentDate != null && adminName != null && employeeName != null) {
 			return true;
 		}
 		return false;
 	}
 	
-	public void executeChangeTransaction(BankClient client) {
+	private void executeChangeTransaction(BankClient client) {
 		clientBooking.bookAppointment(appointmentDate, employeeName, client.getAppointments());
 		notifyEmployee();
 	}
 	
-	public void notifyEmployee() {
+	private void notifyEmployee() {
 		System.out.println("Appointment successfully booked!");	
 	}
 	
-	public void printErrorMsg() {
+	private void printErrorMsg() {
 		System.err.println( "The appointment has not been booked" );
 	}
 }

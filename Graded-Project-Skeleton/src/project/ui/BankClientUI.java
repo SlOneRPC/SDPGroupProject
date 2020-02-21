@@ -45,7 +45,8 @@ public class BankClientUI {
 
 				//Requirement 3: Create Account + Further Accounts
 				while(true) {
-					CreateAccountTransaction cat = new CreateAccountTransaction(bankClient, adminName);
+					CreateAccountTransaction cat = new CreateAccountTransaction();
+					cat.createAccountTransaction(bankClient, adminName);
 					System.out.println( "\n0. No extra account");
 					System.out.println( "1. Extra account");
 					String choice2 = StdInput.read("choice");
@@ -58,7 +59,8 @@ public class BankClientUI {
 			else if(choice.equals("2")) {
 				
 				//Requirement 4: Login 
-				LoginTransaction lt = new LoginTransaction(bankClients);
+				LoginTransaction lt = new LoginTransaction();
+				lt.loginTransaction(bankClients);
 				int pos = lt.executeLoginTransaction();
 				if(pos < 0 || pos >= bankClients.size()) {
 					System.err.println( "Invalid username or password" );
@@ -82,22 +84,26 @@ public class BankClientUI {
 
 					//Requirement 5: Change Details
 					if( choice.equals( "5" ) ) {
-						new ChangeDetailsTransaction(bankClients, pos);
+						ChangeDetailsTransaction dt = new ChangeDetailsTransaction();
+						dt.changeDetailsTransaction(bankClients, pos);
 					}
 
 					//Requirement 6: Delete Bank Account
 					else if( choice.equals( "6" ) ) {
-						new DeleteTransaction(bankClients.get(pos), bankClients);
+						DeleteTransaction dt = new DeleteTransaction();
+						dt.deleteTransaction(bankClients.get(pos), bankClients);
 					}
 
 					//Requirement 7: Internal Money Transfer
 					else if( choice.equals( "7" ) ) {
-						new MoneyTransferTransaction(bankClients.get(pos));
+						MoneyTransferTransaction mt = new MoneyTransferTransaction();
+						mt.moneyTransferTransaction(bankClients.get(pos));
 					}
 
 					//Requirement 8: Book an Appointment
                     else if( choice.equals( "8" ) ) {
-                        BookAppointmentTransaction transaction = new BookAppointmentTransaction(bankClients.get(pos));
+                        BookAppointmentTransaction transaction = new BookAppointmentTransaction();
+                        transaction.bookAppointmentTransaction(bankClients.get(pos));
                     }
 				}
 			}

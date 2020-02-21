@@ -13,9 +13,11 @@ public class DeleteTransaction {
 	 int accountNum;
 	 int accountIndex;
 
-	public DeleteTransaction(BankClient bankClient, List<BankClient> bankClients) {
+	public void deleteTransaction(BankClient bankClient, List<BankClient> bankClients) {
 		this.bankClient = bankClient;
 		this.bankClients = bankClients;
+		accDetail = new ListBankAccount();
+		
 		
 		provideAccountNumber();
 		if(checkTransactionStructure() != null) {

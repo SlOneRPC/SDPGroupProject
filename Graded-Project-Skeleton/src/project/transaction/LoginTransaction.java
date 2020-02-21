@@ -12,7 +12,7 @@ public class LoginTransaction {
 	String password;
 	int pos = 0;
 	
-	public LoginTransaction(List<BankClient> bankClients) {
+	public void loginTransaction(List<BankClient> bankClients) {
 		provideDetails();
 		String error = checkTransactionStructure();
 		
