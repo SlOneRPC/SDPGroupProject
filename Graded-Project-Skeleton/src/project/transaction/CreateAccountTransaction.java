@@ -1,5 +1,6 @@
 package project.transaction;
 
+import project.utilities.AccountVerification;
 import project.utilities.StdInput;
 import project.actors.*;
 
@@ -8,6 +9,7 @@ public class CreateAccountTransaction {
 	String accountType;
 	int accountNumber;
 	BankClient bankClient;
+	AccountVerification accVerification;
 	
 	public CreateAccountTransaction(BankClient bankClient, String adminName) {		
 		this.bankClient = bankClient;
@@ -33,9 +35,9 @@ public class CreateAccountTransaction {
 	}
 	
 	private void executeCreateAccountTransaction(String adminName) {
-		//hold on, the bankClient holds onto the account even if it's not verified?
-		 //note: this is always true
-		boolean verified = bankClient.askForVerification( bankClient.getClientID(), accountNumber, adminName ); 
-		bankClient.verify(accountNumber, verified);
+		//boolean verified = bankClient.askForVerification( bankClient.getClientID(), accountNumber, adminName ); 
+		boolean verified = accVerification.askForVerification(bankClient.getClientID(), accountNumber, adminName);
+		//bankClient.verify(accountNumber, verified);
+		accVerification.verify(accountNumber, verified, bankClient.getAccounts());
 	}	
 }

@@ -4,6 +4,7 @@ import java.util.Date;
 
 import project.actors.BankClient;
 import project.actors.BankEmployee;
+import project.utilities.ClientBooking;
 
 public class ScheduleTransaction {
 
@@ -11,6 +12,7 @@ public class ScheduleTransaction {
 	String adminName = "X", employeeName = "Y";
 	BankEmployee employee;
 	BankClient client;
+	ClientBooking clientBooking;
 	
 	public ScheduleTransaction(BankEmployee currentEmployee, BankClient client,Date AppointmentDate,String employeeName) {
 		
@@ -43,7 +45,8 @@ public class ScheduleTransaction {
 	}
 	
 	public void executeChangeTransaction(BankClient client) {
-		client.bookAppointment( appointmentDate, employeeName );
+		//client.bookAppointment( appointmentDate, employeeName );
+		clientBooking.bookAppointment(appointmentDate, employeeName, client.getAppointments());
 		notifyClient();
 	}
 	

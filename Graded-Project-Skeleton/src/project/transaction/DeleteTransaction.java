@@ -3,11 +3,13 @@ package project.transaction;
 import java.util.List;
 
 import project.actors.BankClient;
+import project.utilities.AccountDetail;
 import project.utilities.StdInput;
 
 public class DeleteTransaction {
 	BankClient bankClient;
 	List<BankClient> bankClients;
+	AccountDetail accDetail;
 	
 	private int accountNum;
 
@@ -25,7 +27,8 @@ public class DeleteTransaction {
 	}
 	
 	private void provideAccountNumber() {
-		bankClient.printAccounts();
+		//bankClient.printAccounts();
+		accDetail.printAllAccounts(bankClient.getAccounts());
 		accountNum = Integer.parseInt(StdInput.read("account number"));
 		
 	}
@@ -33,8 +36,8 @@ public class DeleteTransaction {
 	private String checkTransactionStructure() {
 		//TODO look into this, look for a workaround
 		if(bankClients != null) {
-			for( int index = 0; index < bankClients.get(pos).getAccounts().size(); index++ ) {
-				if( bankClients.get(pos).getAccounts().get(index).getAccountNumber() ==  accountNum) {
+			for( int index = 0; index < bankClient.getAccounts().size(); index++ ) {
+				if( bankClient.getAccounts().get(index).getAccountNumber() ==  accountNum) {
 					return null;
 				}
 			}
@@ -47,7 +50,7 @@ public class DeleteTransaction {
 	}
 	
 	private void executeDeleteTransaction() {
-			bankClients.remove(pos);
+			bankClients.remove(bankClient);
 	}
 	
 }

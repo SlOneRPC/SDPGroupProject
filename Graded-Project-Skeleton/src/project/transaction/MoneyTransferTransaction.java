@@ -1,16 +1,19 @@
 package project.transaction;
 
 import project.actors.BankClient;
+import project.utilities.AccountDetail;
+import project.utilities.InternalTransfer;
 import project.utilities.StdInput;
 
 public class MoneyTransferTransaction {
 	
 	BankClient bankClient;
+	AccountDetail accountDetail;
 	
 	private int fromAccountNum;
 	private int toAccountNum;
 	private double amount;
-	
+	InternalTransfer internalTransfer;
 
 	public MoneyTransferTransaction(BankClient bankClient) {
 		this.bankClient = bankClient;
@@ -25,7 +28,9 @@ public class MoneyTransferTransaction {
 	}
 	
 	private void provideTransferDetails() {
-		bankClient.printAccounts();
+		//bankClient.printAccounts();
+		accountDetail.printAllAccounts(bankClient.getAccounts());
+		
 		fromAccountNum = Integer.parseInt(StdInput.read( "from account number" ) );
 		toAccountNum = Integer.parseInt(StdInput.read( "to account number" ) );
 		amount = Integer.parseInt(StdInput.read("amount" ));
@@ -46,7 +51,8 @@ public class MoneyTransferTransaction {
 	}
 	
 	private void executeMoneyTransferTransaction() {
-		bankClient.transfer(fromAccountNum, toAccountNum, amount);
+		//bankClient.transfer(fromAccountNum, toAccountNum, amount);
+		internalTransfer.transfer(fromAccountNum, toAccountNum, amount, bankClient.getAccounts());
 	}
 	
 }

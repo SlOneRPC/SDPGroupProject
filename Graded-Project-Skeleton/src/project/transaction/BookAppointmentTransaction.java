@@ -7,12 +7,14 @@ import java.util.Date;
 
 import project.actors.BankClient;
 import project.actors.BankEmployee;
+import project.utilities.ClientBooking;
 import project.utilities.StdInput;
 
 public class BookAppointmentTransaction {
 
 	Date appointmentDate = null;
 	String adminName = "X", employeeName = "Y";
+	ClientBooking clientBooking;
 	
 	public BookAppointmentTransaction(BankClient client) 
 	{
@@ -21,8 +23,9 @@ public class BookAppointmentTransaction {
 		
 		if(checkTransactionStructure()) {
 			
-			boolean scheduled = client.askForSchedulingAppointment( client.getClientID(), appointmentDate, employeeName );
-	
+			//boolean scheduled = client.askForSchedulingAppointment( client.getClientID(), appointmentDate, employeeName );
+			boolean scheduled = clientBooking.askForSchedulingAppointment(client.getClientID(), appointmentDate, employeeName);
+			
 			if( scheduled )  executeChangeTransaction(client);
 	
 			else printErrorMsg();
@@ -38,7 +41,8 @@ public class BookAppointmentTransaction {
 	}
 	
 	public void executeChangeTransaction(BankClient client) {
-		client.bookAppointment( appointmentDate, employeeName );
+		//client.bookAppointment( appointmentDate, employeeName );
+		clientBooking.bookAppointment(appointmentDate, employeeName, client.getAppointments());
 		notifyEmployee();
 	}
 	

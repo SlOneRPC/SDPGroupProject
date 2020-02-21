@@ -2,6 +2,7 @@ package project.transaction;
 
 import project.actors.BankAdmin;
 import project.actors.BankClient;
+import project.utilities.AccountVerification;
 import project.utilities.BankAccount;
 import project.utilities.StdInput;
 
@@ -9,6 +10,7 @@ public class VerifyBankAccountTransaction {
 	
 	int accountNumber = -1;
 	BankClient client;
+	AccountVerification accVerification;
 	
 	public VerifyBankAccountTransaction(BankAdmin bankAdmin,int clientIndex) {
 		
@@ -36,7 +38,8 @@ public class VerifyBankAccountTransaction {
 		return false;
 	}
 	public void executeVerifyBankAccountTransaction(BankClient clientToVerify) {
-		clientToVerify.verify( accountNumber, true );//we assume that we are answering to the client with this call
+		//clientToVerify.verify( accountNumber, true );//we assume that we are answering to the client with this call
+		accVerification.verify(accountNumber, true, clientToVerify.getAccounts());
 	}
 	
 	public void printErrorMsg() {
