@@ -2,10 +2,8 @@ package project.utilities;
 
 import java.util.ArrayList;
 
-public class AccountDetail {
+public class ListBankAccount {
 
-	
-	
 	public void printAllAccounts(ArrayList<BankAccount> accounts) {
 		for( int i = 0; accounts != null && i < accounts.size(); ++i ) {
 			BankAccount account = accounts.get(i);

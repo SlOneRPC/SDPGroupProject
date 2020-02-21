@@ -1,4 +1,4 @@
-package exampleGroupProject.principledDesign.principles.OCP;
+package OCP;
 
 
 public class MonthlySchedule implements PaymentSchedule{

@@ -1,14 +1,14 @@
 package project.transaction;
 
 import project.actors.BankClient;
-import project.utilities.AccountDetail;
+import project.utilities.ListBankAccount;
 import project.utilities.InternalTransfer;
 import project.utilities.StdInput;
 
 public class MoneyTransferTransaction {
 	
 	BankClient bankClient;
-	AccountDetail accountDetail;
+	ListBankAccount accountDetail;
 	
 	private int fromAccountNum;
 	private int toAccountNum;

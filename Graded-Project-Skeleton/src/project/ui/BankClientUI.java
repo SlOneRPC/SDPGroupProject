@@ -22,7 +22,6 @@ public class BankClientUI {
 
 		List<BankClient> bankClients = new ArrayList<>();
 		String adminName = "X", employeeName = "Y";
-		StdInput input = new StdInput();
 		
 		while(true){
 			print(bankClients);
@@ -30,7 +29,7 @@ public class BankClientUI {
 			System.out.println( "\n0. Exit" );
 			System.out.println( "1. Register" ); //--> Create Profile --> Create Account --> Create Further Accounts
 			System.out.println( "2. Login" );
-			String choice = input.read( "choice" );
+			String choice = StdInput.read( "choice" );
 
 			if( choice.equals( "0" ) ) break;
 
@@ -38,7 +37,9 @@ public class BankClientUI {
 				BankClient bankClient;
 			
 				//TODO Requirement 1
-				RegisterTransaction rt = new RegisterTransaction(bankClients);
+				RegisterTransaction rt = new RegisterTransactionImpl1();
+				rt.registerBankClient(bankClients);
+				
 				bankClient = bankClients.get(bankClients.size() -1);//perhaps change the transaction return type
 				
 				//TODO Requirement 2
@@ -55,9 +56,7 @@ public class BankClientUI {
 			}
 
 			else if( choice.equals( "2" ) ) {
-
-				String username;
-				String password;//TODO move these into the BankClient class
+		
 				//TODO Requirement 4
 			
 				LoginTransaction lt = new LoginTransaction(bankClients);
@@ -65,20 +64,22 @@ public class BankClientUI {
 				if( pos < 0 || pos >= bankClients.size() ) System.err.println( "Invalid username or password" );
 
 				else {
+					//bankClients.get( pos ).toPrint();
+					BankClient bankClient;
+					ListBankAccount accountDetail = new ListBankAccount();
+					
+					bankClient = bankClients.get(pos);
+					bankClient.toPrint();
 
-					bankClients.get( pos ).toPrint();
-
-					int accountNumber = Integer.parseInt(input.read( "account number" ));
-
-					bankClients.get( pos ).toPrintAccount( accountNumber );
-
-
+					int accountNumber = Integer.parseInt(StdInput.read( "account number" ));				
+					accountDetail.printAccount(bankClient.getAccounts(), accountNumber);
+					
 					System.out.println( "\n0. Exit" );
 					System.out.println( "5. Change Bank Client Details" );
 					System.out.println( "6. Delete Bank Account" );
 					System.out.println( "7. Money transfer" );
 					System.out.println( "8. Book Appoinment" );
-					choice = input.read( "choice" );
+					choice = StdInput.read( "choice" );
 
 
 					//TODO Requirement 5

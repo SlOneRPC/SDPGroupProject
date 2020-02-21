@@ -3,15 +3,15 @@ package project.transaction;
 import java.util.List;
 
 import project.actors.BankClient;
-import project.utilities.AccountDetail;
+import project.utilities.ListBankAccount;
 import project.utilities.StdInput;
 
 public class DeleteTransaction {
 	BankClient bankClient;
 	List<BankClient> bankClients;
-	AccountDetail accDetail;
-	
-	private int accountNum;
+	ListBankAccount accDetail;	
+	 int accountNum;
+	 int accountIndex;
 
 	public DeleteTransaction(BankClient bankClient, List<BankClient> bankClients) {
 		this.bankClient = bankClient;
@@ -27,18 +27,15 @@ public class DeleteTransaction {
 	}
 	
 	private void provideAccountNumber() {
-		//bankClient.printAccounts();
 		accDetail.printAllAccounts(bankClient.getAccounts());
 		accountNum = Integer.parseInt(StdInput.read("account number"));
-		
 	}
 	
-	private String checkTransactionStructure() {
-		//TODO look into this, look for a workaround
+	private String checkTransactionStructure() {	
 		if(bankClients != null) {
 			for( int index = 0; index < bankClient.getAccounts().size(); index++ ) {
-
 				if(bankClient.getAccounts().get(index).getAccountNumber() ==  accountNum) {
+					accountIndex = index;
 					return null;
 				}
 			}
@@ -51,7 +48,13 @@ public class DeleteTransaction {
 	}
 	
 	private void executeDeleteTransaction() {
-			bankClients.remove(bankClient);
+		bankClient.getAccounts().remove(accountIndex);
+		if(bankClient.getAccounts().size() == 0) {
+			deleteClientProfile();
+		}	
 	}
 	
+	private void deleteClientProfile() {
+		bankClients.remove(bankClient);
+	}
 }
