@@ -20,27 +20,25 @@ public class BankAdminUI {
 		bankAdmin.bankClientsToVerify = new ArrayList<BankClient>();
 		bankAdmin.accountNumbersToVerify = new ArrayList<Integer>();
 
+		//CLIENT 1
 		BankClient bankClient1 = new BankClient("u1", "p1");
 		int accountNumber1 = bankClient1.addAccount("primary");
 		
 		try {
 			bankClient1.setClientProfile(new ClientProfileImpl1(accountNumber1, "Fake Name", "Fake Address", 
 					new SimpleDateFormat("dd/MM/yyyy").parse("10/10/1010")));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		} 
+		} catch (ParseException e) {e.printStackTrace();} 
 		
 		bankAdmin.bankClientsToVerify.add(bankClient1);
 		bankAdmin.accountNumbersToVerify.add(accountNumber1);
 
+		//CLIENT 2
 		BankClient bankClient2 = new BankClient("u2", "p2");
 		int accountNumber2 = bankClient2.addAccount("savings");
 		try {
 			bankClient2.setClientProfile(new ClientProfileImpl1(accountNumber1, "Fake Name 2", "Fake Address 2", 
 					new SimpleDateFormat("dd/MM/yyyy").parse("10/10/1010")));
-		} catch (ParseException e) {
-			e.printStackTrace();
-		} 
+		} catch (ParseException e) {e.printStackTrace();} 
 		
 		bankAdmin.bankClientsToVerify.add(bankClient2);
 		bankAdmin.accountNumbersToVerify.add(accountNumber2);

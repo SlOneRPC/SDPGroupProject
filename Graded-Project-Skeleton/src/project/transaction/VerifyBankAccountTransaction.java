@@ -9,7 +9,7 @@ public class VerifyBankAccountTransaction {
 	
 	int accountNumber = -1;
 	BankClient client;
-	AccountVerification accVerification;
+	AccountVerification accVerification = new AccountVerification();
 	
 	public VerifyBankAccountTransaction(BankAdmin bankAdmin,int clientIndex) {
 		

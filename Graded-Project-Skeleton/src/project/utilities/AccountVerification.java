@@ -10,6 +10,7 @@ public class AccountVerification {
 	}
 	
 	public void verify(int accountNumber, boolean verified, ArrayList<BankAccount> accounts) {
+			
 		for( int i = 0; i < accounts.size(); i++ ) {
 			if( accounts.get(i).getAccountNumber() == accountNumber ) {
 				accounts.get(i).setVerified(verified);
