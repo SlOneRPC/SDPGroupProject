@@ -6,10 +6,10 @@ import project.actors.*;
 
 public class CreateAccountTransaction {
 
-	String accountType;
-	int accountNumber;
-	BankClient bankClient;
-	AccountVerification accVerification = new AccountVerification();
+	private String accountType;
+	private int accountNumber;
+	private BankClient bankClient;
+	private AccountVerification accVerification = new AccountVerification();
 	
 	public void createAccountTransaction(BankClient bankClient, String adminName) {		
 		this.bankClient = bankClient;

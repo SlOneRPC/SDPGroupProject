@@ -6,8 +6,8 @@ import project.utilities.StdInput;
 
 public class RegisterTransactionImpl1 implements RegisterTransaction{
 
-	String username;
-	String password;
+	private String username;
+	private String password;
 	
 	public void registerBankClient(List<BankClient> bankClients) {
 		provideDetails();

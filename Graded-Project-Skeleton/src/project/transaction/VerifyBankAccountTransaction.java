@@ -7,9 +7,9 @@ import project.utilities.BankAccount;
 
 public class VerifyBankAccountTransaction {
 	
-	int accountNumber = -1;
-	BankClient client;
-	AccountVerification accVerification;
+	private int accountNumber = -1;
+	private BankClient client;
+	private AccountVerification accVerification;
 	
 	public void verifyBankAccountTransaction(BankAdmin bankAdmin,int clientIndex) {
 		

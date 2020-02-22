@@ -8,9 +8,9 @@ import project.actors.*;
 
 public class LoginTransaction {
 
-	String username;
-	String password;
-	int pos = 0;
+	private String username;
+	private String password;
+	private int pos = 0;
 	
 	public void loginTransaction(List<BankClient> bankClients) {
 		provideDetails();

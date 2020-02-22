@@ -8,9 +8,9 @@ import project.actors.*;
 
 public class CreateProfileTransaction {
 
-	String name;
-	String address;
-	Date birthDate;
+	private String name;
+	private String address;
+	private Date birthDate;
 	
 	public void createProfile(BankClient client) {
 		provideDetails();
