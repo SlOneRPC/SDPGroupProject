@@ -32,6 +32,8 @@ public class BankClientSubUI {
 
 		//Requirement 5: Change Details
 		switch (choice){
+			case "0": 
+				break;
 			case "5":
 				ChangeDetailsTransaction cd = new ChangeDetailsTransaction();
 				cd.changeDetailsTransaction(bankClients, pos);
