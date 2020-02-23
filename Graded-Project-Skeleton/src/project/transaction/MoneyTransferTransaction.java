@@ -7,13 +7,13 @@ import project.utilities.StdInput;
 
 public class MoneyTransferTransaction {
 	
-	BankClient bankClient;
-	ListBankAccount accountDetail;
+	private BankClient bankClient;
+	private ListBankAccount accountDetail;
 	
 	private int fromAccountNum;
 	private int toAccountNum;
 	private double amount;
-	InternalTransfer internalTransfer = new InternalTransfer();
+	private InternalTransfer internalTransfer = new InternalTransfer();
 
 	public void moneyTransferTransaction(BankClient bankClient) {
 		this.bankClient = bankClient;

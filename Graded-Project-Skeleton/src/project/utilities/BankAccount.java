@@ -2,9 +2,9 @@ package project.utilities;
 
 public abstract class BankAccount {
 	
-	int accountNumber;
-	boolean verified;
-	Double balance;
+	private int accountNumber;
+	private boolean verified;
+	private Double balance;
 		
 	public BankAccount(int accNum, boolean verified, Double balance) {
 		this.accountNumber = accNum;

@@ -2,7 +2,6 @@ package OCP;
 
 import java.util.List;
 
-
 public class ListPrint {
 
 	public void print( List<Employee> employees ) {

@@ -1,10 +1,8 @@
 package project.ui;
 
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.List;
 import project.actors.*;
 import project.transaction.*;
 import project.utilities.*;
@@ -43,7 +41,7 @@ public class BankAdminUI {
 		bankAdmin.bankClientsToVerify.add(bankClient2);
 		bankAdmin.accountNumbersToVerify.add(accountNumber2);
 		
-		print(bankAdmin.bankClientsToVerify);
+		ListPrint.print(bankAdmin.bankClientsToVerify);
 		
 		for( int i = 0; i < bankAdmin.accountNumbersToVerify.size(); i++ ) {
 
@@ -59,13 +57,6 @@ public class BankAdminUI {
 				vbt.verifyBankAccountTransaction(bankAdmin, i);
 			}
 		}	
-	}
-	
-	public static void print(List<BankClient> bankClients) {
-
-		for(int i = 0; bankClients != null && i < bankClients.size(); i++) {
-			bankClients.get(i).toPrint();
-		}
 	}
 	
 }

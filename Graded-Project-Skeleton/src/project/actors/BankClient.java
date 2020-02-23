@@ -9,8 +9,8 @@ import project.utilities.*;
 
 public class BankClient extends User{
 
-	public static final AtomicInteger clientCount = new AtomicInteger(0);
-	public static final AtomicInteger accountCount = new AtomicInteger(0);
+	private static final AtomicInteger clientCount = new AtomicInteger(0);
+	private static final AtomicInteger accountCount = new AtomicInteger(0);
 
 	private ClientProfile clientProfile;
 	
@@ -51,20 +51,6 @@ public class BankClient extends User{
 			return accountCount.get();
 		}
 	}
-	
-	public void deleteAccount( int accountNumber ) {
-		int pos = 0;
-
-		for( pos = 0; pos < accounts.size(); ++pos ) {
-			if( accounts.get( pos ).getAccountNumber() == accountNumber ) {
-				break;
-			}
-		}
-		
-		if( pos >= 0 && pos < accounts.size() ) {
-			accounts.remove(pos);
-		}
-	}
 		
 	public void toPrint() {
 		clientProfile.toPrint();
@@ -78,44 +64,27 @@ public class BankClient extends User{
 		if( name == null || address == null || birthDate == null || username == null || password == null ) System.err.println( "Error change details transaction" );
 
 		else {
-			//this.name = name;
-			this.clientProfile.setName(name);
-					
-			//this.address = address;
-			this.clientProfile.setAddress(address);
-			
-			//this.birthDate = birthDate;
-			this.clientProfile.setBirthDate(birthDate);
+			clientProfile.setName(name);
+			clientProfile.setAddress(address);
+	        clientProfile.setBirthDate(birthDate);
 			
 			this.username = username;
 			this.password = password;
 		}
 	}
 	
-	//Getters & Setters (Encapsulation) - TODO Check if needed
+	//Getters & Setters
 	
 	public String getUsername() {
 		return username;
-	}
-
-	public void setUsername(String username) {
-		this.username = username;
 	}
 
 	public String getPassword() {
 		return password;
 	}
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
 	public ArrayList<BankAccount> getAccounts() {
 		return accounts;
-	}
-
-	public void setAccounts(ArrayList<BankAccount> accounts) {
-		this.accounts = accounts;
 	}
 	
 	public ArrayList<Appointment> getAppointments() {

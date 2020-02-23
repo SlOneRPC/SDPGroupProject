@@ -4,8 +4,8 @@ import java.util.ArrayList;
 
 public class InternalTransfer {
 
-	ArrayList<BankAccount> accounts;
-	int from, to;
+	private ArrayList<BankAccount> accounts;
+	private int from, to;
 	
 	public void transfer( int fromAccountNumber, int toAccountNumber, double amount, ArrayList<BankAccount> accounts ) {
 
@@ -43,7 +43,7 @@ public class InternalTransfer {
 		BankAccount result = null;
 		for( to = 0; to < accounts.size(); to++ ) {
 
-			if( accounts.get( to ).getAccountNumber() == targetAccount  ) {
+			if( accounts.get( to ).getAccountNumber() == targetAccount) {
 				result = accounts.get(to);
 				System.out.println( "\tTo accountNumber: " + result.getAccountNumber());
 				System.out.println( "\tTo accountType: " + result.toString());

@@ -1,11 +1,10 @@
 package project.ui;
 
 
-import project.utilities.*;
 import java.text.ParseException;
 import java.util.ArrayList;
 import java.util.List;
-
+import project.utilities.*;
 import project.actors.BankClient;
 import project.utilities.StdInput;
 import project.transaction.*;
@@ -20,7 +19,7 @@ public class BankClientUI {
 		//String employeeName = "Y"; - Not Used; Check Why Later
 		
 		while(true){
-			print(bankClients);
+			ListPrint.print(bankClients);
 			System.out.println("0. Exit");
 			System.out.println("1. Register");
 			System.out.println("2. Login");
@@ -35,8 +34,7 @@ public class BankClientUI {
 			
 				//Requirement 1: Register Bank Client
 				RegisterTransaction rt = new RegisterTransactionImpl1();
-				rt.registerBankClient(bankClients);
-				
+				rt.registerBankClient(bankClients);		
 				bankClient = bankClients.get(bankClients.size() -1);
 				
 				//Requirement 2: Create Profile
@@ -66,55 +64,10 @@ public class BankClientUI {
 					System.err.println( "Invalid username or password" );
 				}
 				else {
-					BankClient bankClient;
-					ListBankAccount accountDetail = new ListBankAccount();
-					
-					bankClient = bankClients.get(pos);
-					bankClient.toPrint();
-
-					int accountNumber = Integer.parseInt(StdInput.read( "account number" ));				
-					accountDetail.printAccount(bankClient.getAccounts(), accountNumber);
-					
-					System.out.println("\n0. Exit");
-					System.out.println("5. Change Bank Client Details");
-					System.out.println("6. Delete Bank Account");
-					System.out.println("7. Money transfer" );
-					System.out.println("8. Book Appoinment");
-					choice = StdInput.read("choice");
-
-					//Requirement 5: Change Details
-					if( choice.equals( "5" ) ) {
-						ChangeDetailsTransaction dt = new ChangeDetailsTransaction();
-						dt.changeDetailsTransaction(bankClients, pos);
-					}
-
-					//Requirement 6: Delete Bank Account
-					else if( choice.equals( "6" ) ) {
-						DeleteTransaction dt = new DeleteTransaction();
-						dt.deleteTransaction(bankClients.get(pos), bankClients);
-					}
-
-					//Requirement 7: Internal Money Transfer
-					else if( choice.equals( "7" ) ) {
-						MoneyTransferTransaction mt = new MoneyTransferTransaction();
-						mt.moneyTransferTransaction(bankClients.get(pos));
-					}
-
-					//Requirement 8: Book an Appointment
-                    else if( choice.equals( "8" ) ) {
-                        BookAppointmentTransaction transaction = new BookAppointmentTransaction();
-                        transaction.bookAppointmentTransaction(bankClients.get(pos));
-                    }
+					BankClientLoggedInUI loggedInUI = new BankClientLoggedInUI();
+					loggedInUI.LogInMenu(bankClients, pos);
 				}
 			}
-		}
-	}
-	
-	public static void print(List<BankClient> bankClients) {
-
-		System.out.println( "Bank Client UI:\n===============" );
-		for( int i = 0; bankClients != null && i < bankClients.size(); i++ ) {
-			bankClients.get( i ).toPrint();
 		}
 	}
 }

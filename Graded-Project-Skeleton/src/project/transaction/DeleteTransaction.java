@@ -7,20 +7,21 @@ import project.utilities.ListBankAccount;
 import project.utilities.StdInput;
 
 public class DeleteTransaction {
-	BankClient bankClient;
-	List<BankClient> bankClients;
-	ListBankAccount listBankAccount = new ListBankAccount();	
-	 int accountNum;
-	 int accountIndex;
+	
+	private BankClient bankClient;
+	private List<BankClient> bankClients;
+	private ListBankAccount listBankAccount = new ListBankAccount();	
+	private int accountNum;
+	private int accountIndex;
 
 	public void deleteTransaction(BankClient bankClient, List<BankClient> bankClients) {
 		this.bankClient = bankClient;
 		this.bankClients = bankClients;
 		
-		
 		provideAccountNumber();
-		if(checkTransactionStructure() != null) {
-			printErrorMessage(checkTransactionStructure());
+		String error = checkTransactionStructure();
+		if(error != null) {
+			printErrorMessage(error);
 		}
 		else {
 			executeDeleteTransaction();
@@ -51,11 +52,7 @@ public class DeleteTransaction {
 	private void executeDeleteTransaction() {
 		bankClient.getAccounts().remove(accountIndex);
 		if(bankClient.getAccounts().size() == 0) {
-			deleteClientProfile();
+			bankClients.remove(bankClient);
 		}	
-	}
-	
-	private void deleteClientProfile() {
-		bankClients.remove(bankClient);
 	}
 }
