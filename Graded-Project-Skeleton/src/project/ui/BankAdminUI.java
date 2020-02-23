@@ -12,7 +12,7 @@ public class BankAdminUI {
 
 	public static void main( String[] args ) {
 		//Requirement 9: Verifying Profiles
-		BankAdmin bankAdmin = new BankAdmin();
+		BankAdmin bankAdmin = new BankAdmin("Fake Admin");
 		
 		//Hard-Coded Data
 		bankAdmin.bankClientsToVerify = new ArrayList<BankClient>();
@@ -47,9 +47,9 @@ public class BankAdminUI {
 
 			int accountNumber = bankAdmin.accountNumbersToVerify.get(i);
 		
-			System.out.println("\nAccount number = " + accountNumber);
-			System.out.println("1. Verify the opening" );
-			System.out.println("2. Do not verify the opening");
+			System.out.println("\nAccount number = " + accountNumber + 
+			"\n1. Verify the opening" + 
+			"\n2. Do not verify the opening");
 			String choice = StdInput.read("choice");
 			
 			if(choice.equals("1")) {

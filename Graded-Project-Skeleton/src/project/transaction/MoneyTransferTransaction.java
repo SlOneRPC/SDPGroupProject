@@ -39,7 +39,7 @@ public class MoneyTransferTransaction {
 	
 	private String checkTransactionStructure() {	
 		if(fromAccountNum != toAccountNum && amount > 0 && bankClient.getAccounts().stream().anyMatch(o -> o.getAccountNumber() == fromAccountNum) 
-				&& bankClient.getAccounts().stream().anyMatch(o -> o.getAccountNumber() == fromAccountNum) && bankClient.getAccounts().get(fromAccountNum).getBalance() > 0) {
+				&& bankClient.getAccounts().stream().anyMatch(o -> o.getAccountNumber() == fromAccountNum)) {
 			return null;
 		}
 		return "Error Money Transfer Transaction";

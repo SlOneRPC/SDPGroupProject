@@ -26,7 +26,7 @@ public class CreateAccountTransaction {
 	}
 	
 	private void provideDetails(String adminName) {
-		 accountType = StdInput.read( "account type (primary, savings)" );
+		 accountType = StdInput.read( "account type (primary or savings)" );
 		 accountNumber = bankClient.addAccount( accountType );				 
 	}
 	

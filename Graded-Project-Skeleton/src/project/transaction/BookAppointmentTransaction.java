@@ -53,10 +53,10 @@ public class BookAppointmentTransaction {
 	}
 	
 	private void notifyEmployee() {
-		System.out.println("Appointment successfully booked!");	
+		System.out.println("\nAppointment successfully booked!");	
 	}
 	
 	private void printErrorMsg() {
-		System.err.println( "The appointment has not been booked" );
+		System.err.println( "\nThe appointment has not been booked" );
 	}
 }

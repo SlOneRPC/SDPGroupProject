@@ -14,7 +14,7 @@ public class BankEmployeeUI {
 
 	public static void main( String[] args ) throws ParseException {
 		//Requirement 10 
-		BankEmployee bankEmployee = new BankEmployee();
+		BankEmployee bankEmployee = new BankEmployee("Fake Employee");
 		
 		//Hard-Coded Data
 		bankEmployee.bankClientsWithAppointments = new ArrayList<BankClient>();
@@ -48,9 +48,9 @@ public class BankEmployeeUI {
 				Date appointmentDate = bankEmployee.appointmentDates.get(i);
 				BankClient bankClient = bankEmployee.bankClientsWithAppointments.get(i);
 	
-				System.out.println("\nCandidate Date: " + appointmentDate + " with client: = " + bankClient.getClientProfile().getName());
-				System.out.println("1. Book it");
-				System.out.println("2. Do not book it");
+				System.out.println("\nCandidate Date: " + appointmentDate + " with client: " + bankClient.getClientProfile().getName() +
+				"\n1. Book it" +
+				"\n2. Do not book it");
 				String choice = StdInput.read("choice");
 				
 				if(choice.equals("1")) {

@@ -44,9 +44,9 @@ public class BankClient extends User{
 
 		else {		
 			if(accountType.equals("primary")) {
-				accounts.add(new PrimaryBankAccount(accountCount.incrementAndGet(), false, 0.0));
+				accounts.add(new PrimaryBankAccount(accountCount.incrementAndGet(), false, 10.0));
 			} else if(accountType.equals("savings")) {
-				accounts.add(new SavingsBankAccount(accountCount.incrementAndGet(), false, 0.0));
+				accounts.add(new SavingsBankAccount(accountCount.incrementAndGet(), false, 10.0));
 			}		
 			return accountCount.get();
 		}
@@ -55,7 +55,7 @@ public class BankClient extends User{
 	public void toPrint() {
 		clientProfile.toPrint();
 		for( int i = 0; accounts != null && i < accounts.size(); i++ ) {
-			System.out.println( "\tAccount Number: " + accounts.get(i).getAccountNumber() );
+			System.out.println( "   Account Number: " + accounts.get(i).getAccountNumber() );
 		}
 	}
 		
