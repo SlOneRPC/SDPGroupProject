@@ -57,9 +57,10 @@ public class BankClientUI {
 				lt.loginTransaction(bankClients);
 				int pos = lt.executeLoginTransaction();
 				if(pos < 0 || pos >= bankClients.size()) {
-					System.err.println( "\n(!) Invalid username or password");
+					System.err.println( "\n\n(!) Invalid username or password");
 					break;
 				}
+				lt.loginTransaction(bankClients);
 				BankClientSubUI loggedInUI = new BankClientSubUI();
 				loggedInUI.LogInMenu(bankClients, pos);
 				break;
