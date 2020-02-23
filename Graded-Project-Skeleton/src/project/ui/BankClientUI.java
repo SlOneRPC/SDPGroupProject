@@ -60,7 +60,6 @@ public class BankClientUI {
 					System.err.println( "\n\n(!) Invalid username or password");
 					break;
 				}
-				lt.loginTransaction(bankClients);
 				BankClientSubUI loggedInUI = new BankClientSubUI();
 				loggedInUI.LogInMenu(bankClients, pos);
 				break;
