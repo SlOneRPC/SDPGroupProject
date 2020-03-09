@@ -13,6 +13,7 @@ public class BankClientUI {
 	
 	public static void main( String[] args ) throws ParseException {
 
+		//TODO delete this comment
 		List<BankClient> bankClients = new ArrayList<>();
 		
 		while(true){
