@@ -3,36 +3,19 @@ package project.transaction;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import java.util.List;
 
 import project.actors.BankClient;
 import project.utilities.StdInput;
 
-public class ChangeDetailsTransaction {
+public class ChangeDetailsTransaction extends TransactionTemplate{
 	
-	private List<BankClient> bankClients;
-	private int pos;
 	private String name;
 	private String address;
 	private Date birthDate = null;
 	private String username;
 	private String password;
 	
-	public void changeDetailsTransaction(List<BankClient> bankClients, int pos) {
-		this.bankClients = bankClients;
-		this.pos = pos;
-		
-		provideNewBankClientDetails();
-		if(checkTransactionStructure() != null) {
-			printErrorMessage(checkTransactionStructure());
-		}
-		else {
-			executeChangeDetailsTransaction();
-		}
-	}
-	
-	
-	private void provideNewBankClientDetails() {
+	public void provideDetails() {
 		name = StdInput.read("new name");
 		address = StdInput.read("new address");
 		
@@ -47,18 +30,18 @@ public class ChangeDetailsTransaction {
 		password = StdInput.read("new password");
 	}
 	
-	private String checkTransactionStructure() {
+	public String checkTransactionStructure() {
 		if (name == null || address == null || birthDate == null) {
 			return "Error Change Details Transaction";
 		}
 		return null;
 	}
 	
-	private void printErrorMessage (String message) {
+	public void printErrorMessage(String message) {
 		System.err.println(message);
 	}
 	
-	private void executeChangeDetailsTransaction() {
-		bankClients.get(pos).changeClientDetails(name, address, birthDate, username, password);
+	public void executeTransaction(BankClient client) {
+		client.changeClientDetails(name, address, birthDate, username, password);
 	}
 }

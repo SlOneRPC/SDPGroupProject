@@ -36,8 +36,8 @@ public class BankClientUI {
 				bankClient = bankClients.get(bankClients.size() -1);
 				
 				//Requirement 2: Create Profile
-				CreateProfileTransaction cpt = new CreateProfileTransaction();
-				cpt.createProfile(bankClient);
+				TransactionTemplate cpt = new CreateProfileTransaction();
+				cpt.exampleTransaction(bankClient);
 
 				//Requirement 3: Create Account + Further Accounts
 				String choice2;

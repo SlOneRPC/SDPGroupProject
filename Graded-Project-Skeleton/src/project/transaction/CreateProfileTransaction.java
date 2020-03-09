@@ -6,24 +6,13 @@ import java.util.Date;
 import project.utilities.StdInput;
 import project.actors.*;
 
-public class CreateProfileTransaction {
-
+public class CreateProfileTransaction extends TransactionTemplate {
+		
 	private String name;
 	private String address;
 	private Date birthDate;
 	
-	public void createProfile(BankClient client) {
-		provideDetails();
-		String error = checkTransactionStructure();
-		if( error != null ) {
-			printErrorMessage( error );
-		}
-		else {
-			executeCreateProfileTransaction(client);
-		}
-	}
-	
-	private void provideDetails() {
+	public void provideDetails() {
 		 name = StdInput.read("name");
 		 address = StdInput.read("address");
 		 try {
@@ -33,16 +22,16 @@ public class CreateProfileTransaction {
 		 }	 
 	}
 	
-	private String checkTransactionStructure() {
+	public String checkTransactionStructure() {
 		if( name == null || address == null || birthDate == null ) return "Error profile transaction" ;
 		return null;
 	}
 	
-	private void printErrorMessage(String message) {
+	public void printErrorMessage(String message) {
 		System.err.println("\n" + message);
 	}
 	
-	private void executeCreateProfileTransaction(BankClient client) {
+	public void executeTransaction(BankClient client) {
 		client.createProfile(name, address, birthDate);
 	}
 }

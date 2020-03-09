@@ -6,6 +6,7 @@ import project.transaction.BookAppointmentTransaction;
 import project.transaction.ChangeDetailsTransaction;
 import project.transaction.DeleteTransaction;
 import project.transaction.MoneyTransferTransaction;
+import project.transaction.TransactionTemplate;
 import project.utilities.ListBankAccount;
 import project.utilities.StdInput;
 
@@ -35,8 +36,8 @@ public class BankClientSubUI {
 			case "0": 
 				break;
 			case "5":
-				ChangeDetailsTransaction cd = new ChangeDetailsTransaction();
-				cd.changeDetailsTransaction(bankClients, pos);
+				TransactionTemplate cd = new ChangeDetailsTransaction();
+				cd.exampleTransaction(bankClient);
 				break;
 			
 			case "6":
