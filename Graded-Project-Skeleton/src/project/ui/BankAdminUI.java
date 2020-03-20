@@ -53,8 +53,8 @@ public class BankAdminUI {
 			String choice = StdInput.read("choice");
 			
 			if(choice.equals("1")) {
-				VerifyBankAccountTransaction vbt  = new VerifyBankAccountTransaction();
-				vbt.verifyBankAccountTransaction(bankAdmin, i);
+//				BankEmployeeVerifyAppointmentsTransaction vbt  = new BankEmployeeVerifyAppointmentsTransaction();
+//				vbt.iterate(candidateAppointments, bankEmployeeName); Appendix changed so this needs to be revised
 			}
 		}	
 	}
