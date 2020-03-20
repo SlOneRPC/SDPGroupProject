@@ -1,10 +1,8 @@
 package project.ui;
 
 import java.text.ParseException;
-import java.util.ArrayList;
-import java.util.List;
-import project.utilities.*;
 import project.actors.BankClient;
+import project.actors.BankClientDictionarySingleton;
 import project.utilities.StdInput;
 import project.transaction.*;
  
@@ -13,11 +11,12 @@ public class BankClientUI {
 	
 	public static void main( String[] args ) throws ParseException {
 
-		//TODO delete this comment
-		List<BankClient> bankClients = new ArrayList<>();
+		//List<BankClient> bankClients = new ArrayList<>();
+		BankClientDictionarySingleton bankClientDictionarySingleton = BankClientDictionarySingleton.getInstance();
 		
 		while(true){
-			ListPrint.print(bankClients);
+			//ListPrint.print(bankClients);
+			bankClientDictionarySingleton.printBankClients();
 			System.out.println("\n0. Exit" + 
 			"\n1. Register" + 
 			"\n2. Login");
@@ -33,9 +32,10 @@ public class BankClientUI {
 				
 				//Requirement 1: Register Bank Client
 				RegisterTransaction rt = new RegisterTransactionImpl1();
-				rt.registerBankClient(bankClients);		
-				bankClient = bankClients.get(bankClients.size() -1);
-				
+				rt.registerBankClient(bankClientDictionarySingleton);		
+				//bankClient = bankClients.get(bankClients.size() -1);
+				bankClient = bankClientDictionarySingleton.get(bankClientDictionarySingleton.size() - 1);
+											
 				//Requirement 2: Create Profile
 				TransactionTemplate cpt = new CreateProfileTransaction();
 				cpt.exampleTransaction(bankClient);
@@ -55,14 +55,14 @@ public class BankClientUI {
 			default:
 				//Requirement 4: Login 
 				LoginTransaction lt = new LoginTransaction();
-				lt.loginTransaction(bankClients);
+				lt.loginTransaction(bankClientDictionarySingleton);
 				int pos = lt.executeLoginTransaction();
-				if(pos < 0 || pos >= bankClients.size()) {
+				if(pos < 0 || pos >= bankClientDictionarySingleton.size()) {
 					System.err.println( "\n\n(!) Invalid username or password");
 					break;
 				}
 				BankClientSubUI loggedInUI = new BankClientSubUI();
-				loggedInUI.LogInMenu(bankClients, pos);
+				loggedInUI.LogInMenu(bankClientDictionarySingleton, pos);
 				break;
 			}
 		}

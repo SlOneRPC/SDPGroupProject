@@ -1,22 +1,21 @@
 package project.transaction;
 
-import java.util.List;
-
 import project.actors.BankClient;
+import project.actors.BankClientDictionarySingleton;
 import project.utilities.ListBankAccount;
 import project.utilities.StdInput;
 
 public class DeleteTransaction {
 	
 	private BankClient bankClient;
-	private List<BankClient> bankClients;
+	private BankClientDictionarySingleton bankClientDictionarySingleton;
 	private ListBankAccount listBankAccount = new ListBankAccount();	
 	private int accountNum;
 	private int accountIndex;
 
-	public void deleteTransaction(BankClient bankClient, List<BankClient> bankClients) {
+	public void deleteTransaction(BankClient bankClient,BankClientDictionarySingleton bankClientDictionarySingleton) {
 		this.bankClient = bankClient;
-		this.bankClients = bankClients;
+		this.bankClientDictionarySingleton = bankClientDictionarySingleton;
 		
 		provideAccountNumber();
 		String error = checkTransactionStructure();
@@ -34,14 +33,12 @@ public class DeleteTransaction {
 	}
 	
 	private String checkTransactionStructure() {	
-		if(bankClients != null) {
-			for( int index = 0; index < bankClient.getAccounts().size(); index++ ) {
-				if(bankClient.getAccounts().get(index).getAccountNumber() ==  accountNum) {
-					accountIndex = index;
-					return null;
-				}
+		for( int index = 0; index < bankClient.getAccounts().size(); index++ ) {
+			if(bankClient.getAccounts().get(index).getAccountNumber() ==  accountNum) {
+				accountIndex = index;
+				return null;
 			}
-		}
+		}		
 		return "Invalid Bank Account Number";
 	}
 	
@@ -52,7 +49,7 @@ public class DeleteTransaction {
 	private void executeDeleteTransaction() {
 		bankClient.getAccounts().remove(accountIndex);
 		if(bankClient.getAccounts().size() == 0) {
-			bankClients.remove(bankClient);
+			bankClientDictionarySingleton.removeBankClient(bankClient);
 		}	
 	}
 }

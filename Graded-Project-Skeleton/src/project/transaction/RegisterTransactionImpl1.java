@@ -1,5 +1,4 @@
 package project.transaction;
-import java.util.List;
 
 import project.actors.*;
 import project.utilities.StdInput;
@@ -8,12 +7,12 @@ public class RegisterTransactionImpl1 implements RegisterTransaction{
 
 	private String username;
 	private String password;
-	
-	public void registerBankClient(List<BankClient> bankClients) {
+			
+	public void registerBankClient(BankClientDictionarySingleton bankClientDictionarySingleton) {
 		provideDetails();
 		String error = checkTransactionStructure();
 		if( error != null ) printErrorMessage( error );
-		else {executeRegisterTransaction(bankClients);}	
+		else {executeRegisterTransaction(bankClientDictionarySingleton);}	
 	}
 	
 	private void provideDetails() {
@@ -30,7 +29,7 @@ public class RegisterTransactionImpl1 implements RegisterTransaction{
 		System.err.println( message );
 	}
 	
-	private void executeRegisterTransaction(List<BankClient> bankClients) {
-		bankClients.add(new BankClient(username, password));
+	private void executeRegisterTransaction(BankClientDictionarySingleton bankClientDictionarySingleton) {
+		BankClientDictionarySingleton.getInstance().addBankClient(new BankClient(username, password));
 	}
 }
