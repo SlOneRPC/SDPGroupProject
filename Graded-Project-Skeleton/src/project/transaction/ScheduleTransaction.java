@@ -47,7 +47,8 @@ public class ScheduleTransaction {
 	}
 	
 	private void executeChangeTransaction(BankClient client) {
-		clientBooking.bookAppointment(appointmentDate, employeeName, client.getAppointments());
+//		clientBooking.bookAppointment(appointmentDate, employeeName, client.getAppointments());
+		clientBooking.bookAppointment(appointmentDate, employeeName, client.getAppointments(), client);
 		notifyClient();
 	}
 	
