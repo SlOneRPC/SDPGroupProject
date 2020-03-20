@@ -1,7 +1,7 @@
 package project.ui;
 
-import java.util.List;
 import project.actors.BankClient;
+import project.actors.BankClientDictionarySingleton;
 import project.transaction.BookAppointmentTransaction;
 import project.transaction.ChangeDetailsTransaction;
 import project.transaction.DeleteTransaction;
@@ -14,11 +14,11 @@ public class BankClientSubUI {
 	
 	//This class is only used through BankClientUI - hence no main method
 	
-	public void LogInMenu(List<BankClient> bankClients, int pos) {
+	public void LogInMenu(BankClientDictionarySingleton bankClientDictionarySingleton, int pos) {
 		BankClient bankClient;
 		ListBankAccount accountDetail = new ListBankAccount();
 		
-		bankClient = bankClients.get(pos);
+		bankClient = bankClientDictionarySingleton.get(pos);
 		bankClient.toPrint();
 
 		int accountNumber = Integer.parseInt(StdInput.read("account number"));				
@@ -42,17 +42,17 @@ public class BankClientSubUI {
 			
 			case "6":
 				DeleteTransaction dt = new DeleteTransaction();
-				dt.deleteTransaction(bankClients.get(pos), bankClients);
+				dt.deleteTransaction(bankClientDictionarySingleton.get(pos), bankClientDictionarySingleton);
 				break;
 			
 			case "7":
 				MoneyTransferTransaction mt = new MoneyTransferTransaction();
-				mt.moneyTransferTransaction(bankClients.get(pos));
+				mt.moneyTransferTransaction(bankClientDictionarySingleton.get(pos));
 				break;
 				
 			default:
 				BookAppointmentTransaction transaction = new BookAppointmentTransaction();
-	            transaction.bookAppointmentTransaction(bankClients.get(pos));
+	            transaction.bookAppointmentTransaction(bankClientDictionarySingleton.get(pos));
 	            break;
 				
 		}

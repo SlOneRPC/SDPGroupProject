@@ -19,6 +19,14 @@ public class BankClientDictionarySingleton {
 		}
 	}
 	
+	//new method, not specified in the lecture notes
+	public void removeBankClient( BankClient bankClient ) {
+		if(bankClient != null) {
+			allBankClients.remove(bankClient);
+		}
+	}
+	
+	
     public void printBankClients() {
     	for(BankClient bankClient : allBankClients) {
     		bankClient.toPrint();
@@ -40,7 +48,7 @@ public class BankClientDictionarySingleton {
     }
     
     public BankClient get( int pos ) {
-    	if(pos <= allBankClients.size() && pos > 0) {
+    	if(pos < allBankClients.size() && pos >= 0) {
     		return allBankClients.get(pos);
     	}
     	return null;

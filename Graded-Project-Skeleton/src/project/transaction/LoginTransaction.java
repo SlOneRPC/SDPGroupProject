@@ -2,8 +2,6 @@ package project.transaction;
 
 import project.utilities.StdInput;
 
-import java.util.List;
-
 import project.actors.*;
 
 public class LoginTransaction {
@@ -12,7 +10,7 @@ public class LoginTransaction {
 	private String password;
 	private int pos = 0;
 	
-	public void loginTransaction(List<BankClient> bankClients) {
+	public void loginTransaction(BankClientDictionarySingleton bankClientDictionarySingleton) {
 		provideDetails();
 		String error = checkTransactionStructure();
 		
@@ -20,8 +18,8 @@ public class LoginTransaction {
 			printErrorMessage(error);
 		}
 		else {
-			for( pos = 0; pos < bankClients.size(); pos++ ){
-				if( bankClients.get( pos ).getUsername().equals( username ) && bankClients.get( pos ).getPassword().equals( password ) )
+			for( pos = 0; pos < bankClientDictionarySingleton.size(); pos++ ){
+				if( bankClientDictionarySingleton.get( pos ).getUsername().equals( username ) && bankClientDictionarySingleton.get( pos ).getPassword().equals( password ) )
 					break;
 			}
 		}	
