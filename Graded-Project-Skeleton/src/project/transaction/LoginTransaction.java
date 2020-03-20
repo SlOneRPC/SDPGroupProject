@@ -17,11 +17,8 @@ public class LoginTransaction {
 		if(error != null) { 
 			printErrorMessage(error);
 		}
-		else {
-			for( pos = 0; pos < bankClientDictionarySingleton.size(); pos++ ){
-				if( bankClientDictionarySingleton.get( pos ).getUsername().equals( username ) && bankClientDictionarySingleton.get( pos ).getPassword().equals( password ) )
-					break;
-			}
+		else {		
+			pos = bankClientDictionarySingleton.searchBankClient(username, password);
 		}	
 	}
 	
