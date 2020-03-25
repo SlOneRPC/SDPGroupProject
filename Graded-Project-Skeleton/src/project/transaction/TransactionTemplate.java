@@ -22,6 +22,5 @@ public abstract class TransactionTemplate {
 	public abstract void printErrorMessage(String error);
 	
 	public abstract void executeTransaction(BankClient client);
-	
-	
+
 }
