@@ -40,7 +40,9 @@ public abstract class ClientProfile {
 	}
 
 	public void setBirthDate(Date birthDate) {
-		this.birthDate = birthDate;
+		if(birthDate.compareTo(new Date()) < 0) {
+			this.birthDate = birthDate;
+		}
 	}
 
 	public int getClientID() {

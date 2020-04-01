@@ -14,18 +14,14 @@ public class BankClient extends User{
 
 	private ClientProfile clientProfile;
 	
-	private String username;
-	private String password;
+	private BankClientCredentials Clientcredentials;
 
 	private ArrayList<BankAccount> accounts = new ArrayList<BankAccount>();
 	private ArrayList<Appointment> appointments = new ArrayList<Appointment>();
 	
 	
 	public BankClient(String username, String password){
-	
-		this.username = username;
-		this.password = password;
-
+		Clientcredentials = new BankClientCredentials(username,password);
 	}
 
 	public void createProfile(String name, String address, Date birthDate){
@@ -68,19 +64,18 @@ public class BankClient extends User{
 			clientProfile.setAddress(address);
 	        clientProfile.setBirthDate(birthDate);
 			
-			this.username = username;
-			this.password = password;
+	        Clientcredentials = new BankClientCredentials(username,password);
 		}
 	}
 	
 	//Getters & Setters
 	
 	public String getUsername() {
-		return username;
+		return Clientcredentials.getUsername();
 	}
 
 	public String getPassword() {
-		return password;
+		return Clientcredentials.getPassword();
 	}
 
 	public ArrayList<BankAccount> getAccounts() {
