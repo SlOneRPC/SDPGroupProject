@@ -44,5 +44,6 @@ public class CreateAccountTransaction {
 	private void executeCreateAccountTransaction(String adminName) {
 		boolean verified = accVerification.askForVerification(bankClient.getClientProfile().getClientID(), accountNumber, adminName);
 		accVerification.verify(accountNumber, verified, bankClient.getAccounts());
+		System.out.println("Account number " + accountNumber + ", verified: " + verified);
 	}	
 }
