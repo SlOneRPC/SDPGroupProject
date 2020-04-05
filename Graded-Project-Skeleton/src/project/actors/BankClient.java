@@ -55,6 +55,21 @@ public class BankClient extends User{
 		}
 	}
 		
+	//NEW
+	public void printAllDetails() {
+		String output = "ClientID = " + this.clientProfile.getClientID() + "\nName = " + this.clientProfile.getName() +
+				"\nUsername = " + this.getUsername() + "\nPassword = " + this.getPassword() + "\nAddress = " + this.clientProfile.getAddress()
+				+ "\nBirthdate = " + this.clientProfile.getBirthDate();
+		System.out.println(output);
+	}
+	
+	public void printDetailsForAppointment() {
+		String output = "ClientID = " + this.clientProfile.getClientID() + "\nName = " + this.clientProfile.getName() +
+				"\nUsername = " + this.getUsername() + "\nPassword = " + this.getPassword();
+		System.out.println(output);
+				
+	}
+	
 	public void changeClientDetails( String name, String address, Date birthDate, String username, String password ){
 
 		if( name == null || address == null || birthDate == null || username == null || password == null ) System.err.println( "Error change details transaction" );

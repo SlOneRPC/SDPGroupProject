@@ -41,7 +41,9 @@ public class BankAdminUI {
 		bankAdmin.bankClientsToVerify.add(bankClient2);
 		bankAdmin.accountNumbersToVerify.add(accountNumber2);
 		
-		ListPrint.print(bankAdmin.bankClientsToVerify);
+		//ListPrint.print(bankAdmin.bankClientsToVerify);
+		ListPrint.printBankClientsAccountsToVerify(bankAdmin.bankClientsToVerify, bankAdmin.accountNumbersToVerify);
+		
 		
 		for( int i = 0; i < bankAdmin.accountNumbersToVerify.size(); i++ ) {
 

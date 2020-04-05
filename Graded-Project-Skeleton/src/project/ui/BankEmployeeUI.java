@@ -20,7 +20,7 @@ public class BankEmployeeUI {
 		bankEmployee.bankClientsWithAppointments = new ArrayList<BankClient>();
 		bankEmployee.appointmentDates = new ArrayList<Date>();
 
-		try { //Fake Bank Clients
+		try { 
 			
 			BankClient bankClient1 = new BankClient("u1", "p1");
 			int accountNumber1 = bankClient1.addAccount("primary");
@@ -41,7 +41,8 @@ public class BankEmployeeUI {
 			
 		} catch (ParseException e) {e.printStackTrace();} 
 
-		ListPrint.print(bankEmployee.bankClientsWithAppointments);
+		//ListPrint.print(bankEmployee.bankClientsWithAppointments);
+		ListPrint.printBankClientsWithAppointmentsToBook(bankEmployee.bankClientsWithAppointments, bankEmployee.appointmentDates);
 
 		for(int i = 0; i < bankEmployee.bankClientsWithAppointments.size(); i++) {
 
@@ -52,11 +53,12 @@ public class BankEmployeeUI {
 				"\n1. Book it" +
 				"\n2. Do not book it");
 				String choice = StdInput.read("choice");
-				
+				Boolean scheduled = (choice.equals("1"));
 				if(choice.equals("1")) {
 					ScheduleTransaction st = new ScheduleTransaction();
 					st.scheduleTransaction(bankEmployee, bankClient, appointmentDate,  bankEmployee.name);
 				}
+				System.out.println("Appointment date: " + appointmentDate.toString() + ", scheduled: " + scheduled);
 		}
 	}
 }
