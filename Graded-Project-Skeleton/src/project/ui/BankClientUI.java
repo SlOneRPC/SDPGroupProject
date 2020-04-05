@@ -19,7 +19,7 @@ public class BankClientUI {
 			bankClientDictionarySingleton.printBankClients();
 			System.out.println("\n0. Exit" + 
 			"\n1. Register" + 
-			"\n2. Login");
+			"\n4. Login");
 			String choice = StdInput.read("choice");
 			
 			switch (choice) {
@@ -58,7 +58,7 @@ public class BankClientUI {
 				lt.loginTransaction(bankClientDictionarySingleton);
 				int pos = lt.executeLoginTransaction();
 				if(pos < 0 || pos >= bankClientDictionarySingleton.size()) {
-					System.err.println( "\n\n(!) Invalid username or password");
+					System.err.println( "\nBank client credentials were not found.");
 					break;
 				}
 				BankClientSubUI loggedInUI = new BankClientSubUI();

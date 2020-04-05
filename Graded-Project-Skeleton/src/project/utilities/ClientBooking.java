@@ -20,11 +20,11 @@ public class ClientBooking {
 	}
 	
 	public void bookAppointment( Date date, String  employeeName, ArrayList<Appointment> appointments, BankClient bankClient){
-
+		//The appointment has beem scheduled
 		if( date == null || employeeName == null ) System.err.println( "Error book appointment transaction" );
 
 		else { //Employee Name may be needed here or list of appointments
-			appointments.add(new CandidateAppointment(date, bankClient));
+			appointments.add(new CandidateAppointment(date, bankClient, employeeName, true));
 		}
 	}
 	

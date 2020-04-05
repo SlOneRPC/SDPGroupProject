@@ -16,18 +16,16 @@ public class ChangeDetailsTransaction extends TransactionTemplate{
 	private String password;
 	
 	public void provideDetails() {
+		username = StdInput.read("new username");
+		password = StdInput.read("new password");
 		name = StdInput.read("new name");
-		address = StdInput.read("new address");
-		
+		address = StdInput.read("new address");		
 		try { 
 			birthDate = new SimpleDateFormat( "dd/MM/yyyy" ).parse(StdInput.read( "new birthDate" )); 
 		}
 		catch(ParseException ex ) { 
 			ex.printStackTrace(); 
 		}
-		
-		username = StdInput.read("new username");
-		password = StdInput.read("new password");
 	}
 	
 	public String checkTransactionStructure() {

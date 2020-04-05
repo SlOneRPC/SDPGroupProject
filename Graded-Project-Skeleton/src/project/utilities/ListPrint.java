@@ -31,6 +31,25 @@ public class ListPrint {
 		}
 	}
 	
+	public static void printAllAccounts(List<BankAccount> accounts) {
+		for(BankAccount account : accounts) {
+			printAccount(account);
+		}
+	}
+	
+	public static void printAccount(BankAccount account){
+		String type = getAccountType(account);
+		System.out.println("Account type: " + type + "\n\naccount number = " + account.getAccountNumber() + ", account verified = " + account.getVerified() + 
+				", account balance = " + account.getBalance()); 
+	}
+	
+	public static void printAllAppointments(List<Appointment> appointments) {
+		for(Appointment appointment : appointments) {
+			String output = "Appointment date: " + appointment.appointmentDate.toString() + "\nbankEmployee: " + appointment.interviewerName 
+					+ ", scheduled = " + appointment.scheduled;
+			System.out.println(output);
+		}
+	}
 	
 	private static BankClient findClientWithAccountNumber(List<BankClient> bankClients, int target) {
 		for(BankClient client : bankClients) {

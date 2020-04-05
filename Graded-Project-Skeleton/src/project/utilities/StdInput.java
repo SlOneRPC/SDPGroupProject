@@ -8,7 +8,7 @@ public class StdInput {
 
 	public static String read( String label ) {
 
-		System.out.println( "\nEnter your " + label + ":" );
+		System.out.println( "\nProvide " + label + ":" );
 		System.out.print( "> " );
 
 		BufferedReader input = new BufferedReader( new InputStreamReader( System.in ) );

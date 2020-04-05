@@ -49,7 +49,8 @@ public class BookAppointmentTransaction {
 	
 	private void executeChangeTransaction(BankClient client) {
 		clientBooking.bookAppointment(appointmentDate, employeeName, client.getAppointments(), client);
-		notifyEmployee();
+		System.out.println("Appointment date " + appointmentDate.toString() + ", scheduled: true");
+		//notifyEmployee();
 	}
 	
 	private void notifyEmployee() {

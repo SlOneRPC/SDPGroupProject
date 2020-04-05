@@ -40,19 +40,23 @@ public class BankClient extends User{
 
 		else {		
 			if(accountType.equals("primary")) {
-				accounts.add(new PrimaryBankAccount(accountCount.incrementAndGet(), false, 10.0));
+				accounts.add(new PrimaryBankAccount(accountCount.incrementAndGet(), false, 100.0));
 			} else if(accountType.equals("savings")) {
-				accounts.add(new SavingsBankAccount(accountCount.incrementAndGet(), false, 10.0));
+				accounts.add(new SavingsBankAccount(accountCount.incrementAndGet(), false, 100.0));
 			}		
 			return accountCount.get();
 		}
 	}
 		
 	public void toPrint() {
-		clientProfile.toPrint();
-		for( int i = 0; accounts != null && i < accounts.size(); i++ ) {
-			System.out.println( "   Account Number: " + accounts.get(i).getAccountNumber() );
-		}
+		/*
+		 * clientProfile.toPrint(); for( int i = 0; accounts != null && i <
+		 * accounts.size(); i++ ) { System.out.println( "   Account Number: " +
+		 * accounts.get(i).getAccountNumber() ); }
+		 */
+		printAllDetails();
+		ListPrint.printAllAccounts(this.accounts);
+		ListPrint.printAllAppointments(this.appointments);
 	}
 		
 	//NEW
@@ -112,7 +116,7 @@ public class BankClient extends User{
 	
 	//Appendix stuff - not sure if correct
 	public Appointment addAppointment(Date date, String bankEmployeeName) {
-		appointments.add(new CandidateAppointment(date, this));
+		appointments.add(new CandidateAppointment(date, this, bankEmployeeName, true));
 		return null;
 	}
 
