@@ -23,8 +23,8 @@ public class BankAdminUI {
 		int accountNumber1 = bankClient1.addAccount("primary");
 		
 		try {
-			bankClient1.setClientProfile(new ClientProfileImpl1(accountNumber1, "A", "Address A", 
-					new SimpleDateFormat("dd/MM/yyyy").parse("20/12/2000")));
+			bankClient1.setClientProfile(new ClientProfileImpl1(accountNumber1, "D1", "AS1", 
+					new SimpleDateFormat("dd/MM/yyyy").parse("23/10/2000")));
 		} catch (ParseException e) {e.printStackTrace();} 
 		
 		bankAdmin.bankClientsToVerify.add(bankClient1);
@@ -34,17 +34,15 @@ public class BankAdminUI {
 		BankClient bankClient2 = new BankClient("u2", "p2");
 		int accountNumber2 = bankClient2.addAccount("savings");
 		try {
-			bankClient2.setClientProfile(new ClientProfileImpl1(accountNumber2, "B", "Address B", 
-					new SimpleDateFormat("dd/MM/yyyy").parse("12/10/2000")));
+			bankClient2.setClientProfile(new ClientProfileImpl1(accountNumber2, "D2", "AS2", 
+					new SimpleDateFormat("dd/MM/yyyy").parse("10/12/2001")));
 		} catch (ParseException e) {e.printStackTrace();} 
 		
 		bankAdmin.bankClientsToVerify.add(bankClient2);
 		bankAdmin.accountNumbersToVerify.add(accountNumber2);
 		
-		//ListPrint.print(bankAdmin.bankClientsToVerify);
 		ListPrint.printBankClientsAccountsToVerify(bankAdmin.bankClientsToVerify, bankAdmin.accountNumbersToVerify);
-		
-		
+				
 		for( int i = 0; i < bankAdmin.accountNumbersToVerify.size(); i++ ) {
 
 			int accountNumber = bankAdmin.accountNumbersToVerify.get(i);
@@ -58,6 +56,7 @@ public class BankAdminUI {
 				VerifyBankAccountTransaction vbt  = new VerifyBankAccountTransaction();
 				vbt.verifyBankAccountTransaction(bankAdmin, i);
 			}
+			System.out.println("Account number " + accountNumber + ", verified: " + (choice.equals("1")));
 		}	
 	}
 	

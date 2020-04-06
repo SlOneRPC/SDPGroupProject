@@ -3,6 +3,7 @@ package project.ui;
 import java.text.ParseException;
 import project.actors.BankClient;
 import project.actors.BankClientDictionarySingleton;
+import project.utilities.ListBankAccount;
 import project.utilities.StdInput;
 import project.transaction.*;
  
@@ -11,11 +12,11 @@ public class BankClientUI {
 	
 	public static void main( String[] args ) throws ParseException {
 
-		//List<BankClient> bankClients = new ArrayList<>();
 		BankClientDictionarySingleton bankClientDictionarySingleton = BankClientDictionarySingleton.getInstance();
+		TransactionTemplate transactionTemplate = null;
+		
 		
 		while(true){
-			//ListPrint.print(bankClients);
 			bankClientDictionarySingleton.printBankClients();
 			System.out.println("\n0. Exit" + 
 			"\n1. Register" + 
@@ -33,12 +34,11 @@ public class BankClientUI {
 				//Requirement 1: Register Bank Client
 				RegisterTransaction rt = new RegisterTransactionImpl1();
 				rt.registerBankClient(bankClientDictionarySingleton);		
-				//bankClient = bankClients.get(bankClients.size() -1);
 				bankClient = bankClientDictionarySingleton.get(bankClientDictionarySingleton.size() - 1);
 											
 				//Requirement 2: Create Profile
-				TransactionTemplate cpt = new CreateProfileTransaction();
-				cpt.exampleTransaction(bankClient);
+				transactionTemplate = new CreateProfileTransaction();
+				transactionTemplate.exampleTransaction(bankClient);
 
 				//Requirement 3: Create Account + Further Accounts
 				String choice2;
@@ -61,10 +61,59 @@ public class BankClientUI {
 					System.err.println( "\nBank client credentials were not found.");
 					break;
 				}
-				BankClientSubUI loggedInUI = new BankClientSubUI();
-				loggedInUI.LogInMenu(bankClientDictionarySingleton, pos);
-				break;
+
+				subUI(bankClientDictionarySingleton, pos, transactionTemplate);
+				break;				
 			}
 		}
+	}
+	
+	private static void subUI(BankClientDictionarySingleton bankClientDictionarySingleton, int pos, TransactionTemplate transactionTemplate) {
+		BankClient bankClient;
+		ListBankAccount accountDetail = new ListBankAccount();
+		
+		bankClient = bankClientDictionarySingleton.get(pos);
+		bankClient.toPrint();
+
+		int accountNumber = Integer.parseInt(StdInput.read("account number"));				
+		accountDetail.printAccount(bankClient.getAccounts(), accountNumber);
+		
+		String choice = "";
+		do {
+			bankClient.toPrint();
+			System.out.println("\n0. Exit" + 
+					"\n5. Change Bank Client Details" + 
+					"\n6. Delete Bank Account" +
+					"\n7. Money transfer" +
+					"\n8. Book Appoinment");
+					choice = StdInput.read("choice");
+
+					//Requirement 5: Change Details
+					switch (choice){
+						case "0": 
+							break;
+						case "5":
+							transactionTemplate = new ChangeDetailsTransaction();
+							transactionTemplate.exampleTransaction(bankClient);
+							break;
+						
+						case "6":
+							DeleteTransaction dt = new DeleteTransaction();
+							dt.deleteTransaction(bankClientDictionarySingleton.get(pos), bankClientDictionarySingleton);
+							break;
+						
+						case "7":
+							MoneyTransferTransaction mt = new MoneyTransferTransaction();
+							mt.moneyTransferTransaction(bankClientDictionarySingleton.get(pos));
+							break;
+							
+						default:
+							BookAppointmentTransaction transaction = new BookAppointmentTransaction();
+				            transaction.bookAppointmentTransaction(bankClientDictionarySingleton.get(pos));
+				            break;
+							
+					}
+		}while(!choice.equals("0"));
+			
 	}
 }

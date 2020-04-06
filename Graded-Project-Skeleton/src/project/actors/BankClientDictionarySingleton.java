@@ -19,13 +19,11 @@ public class BankClientDictionarySingleton {
 		}
 	}
 	
-	//new method, not specified in the lecture notes
 	public void removeBankClient( BankClient bankClient ) {
 		if(bankClient != null) {
 			allBankClients.remove(bankClient);
 		}
 	}
-	
 	
     public void printBankClients() {
     	for(BankClient bankClient : allBankClients) {

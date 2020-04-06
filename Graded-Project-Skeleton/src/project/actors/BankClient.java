@@ -49,17 +49,11 @@ public class BankClient extends User{
 	}
 		
 	public void toPrint() {
-		/*
-		 * clientProfile.toPrint(); for( int i = 0; accounts != null && i <
-		 * accounts.size(); i++ ) { System.out.println( "   Account Number: " +
-		 * accounts.get(i).getAccountNumber() ); }
-		 */
 		printAllDetails();
 		ListPrint.printAllAccounts(this.accounts);
 		ListPrint.printAllAppointments(this.appointments);
 	}
 		
-	//NEW
 	public void printAllDetails() {
 		String output = "ClientID = " + this.clientProfile.getClientID() + "\nName = " + this.clientProfile.getName() +
 				"\nUsername = " + this.getUsername() + "\nPassword = " + this.getPassword() + "\nAddress = " + this.clientProfile.getAddress()

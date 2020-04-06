@@ -39,7 +39,7 @@ public class ListPrint {
 	
 	public static void printAccount(BankAccount account){
 		String type = getAccountType(account);
-		System.out.println("Account type: " + type + "\n\naccount number = " + account.getAccountNumber() + ", account verified = " + account.getVerified() + 
+		System.out.println("Account type: " + type + "\n\nAccount number = " + account.getAccountNumber() + ", account verified = " + account.getVerified() + 
 				", account balance = " + account.getBalance()); 
 	}
 	

@@ -15,7 +15,6 @@ public class InternalTransfer {
 		if( from >= 0 && from < accounts.size() && to >= 0 && to < accounts.size() && fromAccount.getBalance() >= amount ) {	
 			fromAccount.setBalance(fromAccount.getBalance() - amount);
 			toAccount.setBalance(toAccount.getBalance() + amount);
-			//System.out.println( "Transfer is completed" );
 		}
 		
 		else System.out.println( "Transfer cannot be made" );
@@ -27,13 +26,7 @@ public class InternalTransfer {
 		for( from = 0; from < accounts.size(); from++ ) {
 
 			if( accounts.get( from ).getAccountNumber() == targetAccount  ) {
-				result = accounts.get(from);
-				/*
-				 * System.out.println( "\tFrom accountNumber: " + result.getAccountNumber());
-				 * System.out.println( "\tFrom accountType: " + result.toString());
-				 * System.out.println( "\tFrom accountVerified: " + result.getVerified() );
-				 * System.out.println( "\tFrom accountBalance: " + result.getBalance() );
-				 */
+				result = accounts.get(from);			
 				return result;
 			}
 		}
@@ -46,13 +39,7 @@ public class InternalTransfer {
 		for( to = 0; to < accounts.size(); to++ ) {
 
 			if( accounts.get( to ).getAccountNumber() == targetAccount) {
-				result = accounts.get(to);
-				/*
-				 * System.out.println( "\tTo accountNumber: " + result.getAccountNumber());
-				 * System.out.println( "\tTo accountType: " + result.toString());
-				 * System.out.println( "\tTo accountVerified: " + result.getVerified() );
-				 * System.out.println( "\tTo accountBalance: " + result.getBalance() );
-				 */	
+				result = accounts.get(to);			
 				return result;
 			}
 		}

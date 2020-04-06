@@ -21,7 +21,7 @@ public class BankEmployeeUI {
 		bankEmployee.appointmentDates = new ArrayList<Date>();
 
 		try { 
-			
+			//CLIENT 1
 			BankClient bankClient1 = new BankClient("u1", "p1");
 			int accountNumber1 = bankClient1.addAccount("primary");
 			
@@ -30,18 +30,17 @@ public class BankEmployeeUI {
 			bankEmployee.bankClientsWithAppointments.add(bankClient1);
 			bankEmployee.appointmentDates.add( new SimpleDateFormat( "dd/MM/yyyy" ).parse( "20/12/2000" ) );
 			
+			//CLIENT 2
 			BankClient bankClient2 = new BankClient("u2", "p2");
 			int accountNumber2 = bankClient2.addAccount("savings");
-			
+						
 			bankClient2.setClientProfile(new ClientProfileImpl1(accountNumber2, "B", "Address B", 
-					new SimpleDateFormat("dd/MM/yyyy").parse("12/10/2000")));
-			
+					new SimpleDateFormat("dd/MM/yyyy").parse("12/10/2000")));			
 			bankEmployee.bankClientsWithAppointments.add(bankClient2);
 			bankEmployee.appointmentDates.add( new SimpleDateFormat( "dd/MM/yyyy" ).parse( "22/12/2000" ) );
 			
 		} catch (ParseException e) {e.printStackTrace();} 
 
-		//ListPrint.print(bankEmployee.bankClientsWithAppointments);
 		ListPrint.printBankClientsWithAppointmentsToBook(bankEmployee.bankClientsWithAppointments, bankEmployee.appointmentDates);
 
 		for(int i = 0; i < bankEmployee.bankClientsWithAppointments.size(); i++) {
@@ -49,7 +48,7 @@ public class BankEmployeeUI {
 				Date appointmentDate = bankEmployee.appointmentDates.get(i);
 				BankClient bankClient = bankEmployee.bankClientsWithAppointments.get(i);
 	
-				System.out.println("\nCandidate Date: " + appointmentDate + " with client: " + bankClient.getClientProfile().getName() +
+				System.out.println("\nCandidate Date = " + appointmentDate + " with client = " + bankClient.getClientProfile().getName() +
 				"\n1. Book it" +
 				"\n2. Do not book it");
 				String choice = StdInput.read("choice");

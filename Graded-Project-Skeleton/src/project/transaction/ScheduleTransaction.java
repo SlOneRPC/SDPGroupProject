@@ -22,20 +22,16 @@ public class ScheduleTransaction {
 		this.client = client;
 		clientBooking = new ClientBooking();
 		
-		if(checkTransactionStructure()) {
-			executeChangeTransaction(client);
-		}
-		else {
-			printErrorMsg();
-		}
+		if(checkTransactionStructure()) { executeChangeTransaction(client); }
+		else { printErrorMsg();}
 	}
 
 
 	private boolean checkTransactionStructure() {
 		if(appointmentDate != null && adminName != null && employeeName != null) {
 			int i = 0;
-			for(Date date : employee.appointmentDates) { //ensure no two appointments are on the same day (Conflicting Appointments)
-				
+			for(Date date : employee.appointmentDates) { 
+				//ensure no two appointments are on the same day (Conflicting Appointments)
 				if(date == appointmentDate && employee.bankClientsWithAppointments.get(i) != client) {
 					return false;
 				}
@@ -47,13 +43,7 @@ public class ScheduleTransaction {
 	}
 	
 	private void executeChangeTransaction(BankClient client) {
-//		clientBooking.bookAppointment(appointmentDate, employeeName, client.getAppointments());
 		clientBooking.bookAppointment(appointmentDate, employeeName, client.getAppointments(), client);
-		//notifyClient();
-	}
-	
-	private void notifyClient() {
-			System.out.println("Appointment successfully booked!");
 	}
 	
 	private void printErrorMsg() {

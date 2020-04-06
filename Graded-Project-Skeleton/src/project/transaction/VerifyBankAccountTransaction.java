@@ -46,6 +46,5 @@ public class VerifyBankAccountTransaction {
 	
 	private void printErrorMsg() {
 		System.err.println("Verify Bank Account error!");
-	}
-	
+	}	
 }
