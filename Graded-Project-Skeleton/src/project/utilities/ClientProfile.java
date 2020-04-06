@@ -13,10 +13,24 @@ public abstract class ClientProfile {
 	public abstract void toPrint();
 	
 	public ClientProfile(String name, String address, Date birthDate, int clientID) {
+		boolean initialised = securityManagerCheck(birthDate);
+		if(initialised) init(name, address, birthDate, clientID);
+		else throw new SecurityException("Birthdate is not correctly initialised");			
+	}
+	
+	private void init(String name, String address, Date birthDate, int clientID) {
 		this.setAddress(address);
 		this.name = name;
 		this.setBirthDate(birthDate);
 		this.clientID = clientID;
+	}
+	
+	private boolean securityManagerCheck(Date dateToValidate) {		
+		Date date = new Date();//current date
+		if(dateToValidate.compareTo(date) < 0) {
+			return true;
+		}
+		return false;
 	}
 	
 	public String getName() {
