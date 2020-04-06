@@ -106,19 +106,4 @@ public class BankClient extends User{
 	public ClientProfile getClientProfile() {
 		return this.clientProfile;
 	}
-
-	
-	//Appendix stuff - not sure if correct
-	public Appointment addAppointment(Date date, String bankEmployeeName) {
-		appointments.add(new CandidateAppointment(date, this, bankEmployeeName, true));
-		return null;
-	}
-
-	public void setScheduled(Appointment appointment, boolean scheduled) {
-		if(scheduled) {
-			//not sure what to do here
-		}
-		
-	}
-	
 }

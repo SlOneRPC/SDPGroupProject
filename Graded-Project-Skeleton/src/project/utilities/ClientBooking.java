@@ -23,7 +23,7 @@ public class ClientBooking {
 		//The appointment has beem scheduled
 		if( date == null || employeeName == null ) System.err.println( "Error book appointment transaction" );
 
-		else { //Employee Name may be needed here or list of appointments
+		else {
 			appointments.add(new CandidateAppointment(date, bankClient, employeeName, true));
 		}
 	}

@@ -50,13 +50,8 @@ public class BookAppointmentTransaction {
 	private void executeChangeTransaction(BankClient client) {
 		clientBooking.bookAppointment(appointmentDate, employeeName, client.getAppointments(), client);
 		System.out.println("Appointment date " + appointmentDate.toString() + ", scheduled: true");
-		//notifyEmployee();
 	}
-	
-	private void notifyEmployee() {
-		System.out.println("\nAppointment successfully booked!");	
-	}
-	
+		
 	private void printErrorMsg() {
 		System.err.println( "\nThe appointment has not been booked" );
 	}

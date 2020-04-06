@@ -88,26 +88,30 @@ public class BankClientUI {
 					"\n8. Book Appoinment");
 					choice = StdInput.read("choice");
 
-					//Requirement 5: Change Details
+					
 					switch (choice){
 						case "0": 
 							break;
 						case "5":
+							//Requirement 5: Change Details
 							transactionTemplate = new ChangeDetailsTransaction();
 							transactionTemplate.exampleTransaction(bankClient);
 							break;
 						
 						case "6":
+							//Requirement 6: Delete Account
 							DeleteTransaction dt = new DeleteTransaction();
 							dt.deleteTransaction(bankClientDictionarySingleton.get(pos), bankClientDictionarySingleton);
 							break;
 						
 						case "7":
+							//Requirement 7: Transfer Money
 							MoneyTransferTransaction mt = new MoneyTransferTransaction();
 							mt.moneyTransferTransaction(bankClientDictionarySingleton.get(pos));
 							break;
 							
 						default:
+							//Requirement 8: Book Appointment
 							BookAppointmentTransaction transaction = new BookAppointmentTransaction();
 				            transaction.bookAppointmentTransaction(bankClientDictionarySingleton.get(pos));
 				            break;

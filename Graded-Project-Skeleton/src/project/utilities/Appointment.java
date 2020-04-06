@@ -31,5 +31,4 @@ public abstract class Appointment {
 	public void toPrint() {
 		System.out.println("Date: " + appointmentDate);
 	}
-	
 }
